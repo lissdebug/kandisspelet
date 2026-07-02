@@ -2681,7 +2681,7 @@ class Component extends DCLogic {
     clearTimeout(this._emojiTimer);
     this._emojiTimer = setTimeout(() => this._parseEmoji(), 150);
     try {
-      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: s.phase === 'weekwait' ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks }));
+      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: (s.phase === 'weekwait' || s.phase === 'inbox' || s.phase === 'shop' || s.phase === 'lifestyle' || s.phase === 'team' || s.phase === 'trophies') ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks }));
     } catch (e) {}
   }
 
@@ -2986,17 +2986,20 @@ class Component extends DCLogic {
     var root = document.querySelector('[data-screen-label="Spel"]');
     if (!root) { setTimeout(start, 150); return; }
     root.style.transformOrigin = 'center center';
-    var scheduled = false;
+    var last = -1;
     function fit() {
       var w = root.offsetWidth, h = root.offsetHeight;
       if (!w || !h) return;
       var z = Math.min(window.innerWidth / w, window.innerHeight / h, 1.25);
+      if (Math.abs(z - last) < 0.003) return;   // only write when the scale actually changed → no per-tick jank
+      last = z;
       root.style.transform = 'scale(' + z + ')';
     }
-    function schedule() { if (scheduled) return; scheduled = true; requestAnimationFrame(function () { scheduled = false; fit(); }); }
     window.addEventListener('resize', fit);
-    try { new MutationObserver(schedule).observe(root, { childList: true, subtree: true }); } catch (e) {}
-    fit(); setTimeout(fit, 200); setTimeout(fit, 600); setTimeout(fit, 1400);
+    // screens change on interaction — re-fit right after any click so the new screen (e.g. the inbox) fits fully
+    document.addEventListener('pointerdown', function () { setTimeout(fit, 40); setTimeout(fit, 200); }, true);
+    setInterval(fit, 350);                        // safety net for non-click transitions (recap, video results…)
+    fit(); setTimeout(fit, 200); setTimeout(fit, 700); setTimeout(fit, 1500);
   }
   if (document.readyState !== 'loading') start(); else document.addEventListener('DOMContentLoaded', start);
 })();
