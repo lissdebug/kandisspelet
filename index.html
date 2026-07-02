@@ -2985,20 +2985,19 @@ class Component extends DCLogic {
   function start() {
     var root = document.querySelector('[data-screen-label="Spel"]');
     if (!root) { setTimeout(start, 150); return; }
-    root.style.transformOrigin = 'center center';
-    var last = -1;
     function fit() {
-      var w = root.offsetWidth, h = root.offsetHeight;
-      if (!w || !h) return;
+      // measure natural size at zoom 1, then set zoom — synchronous, so only the final value paints (no flash)
+      root.style.zoom = '1';
+      var h = root.scrollHeight, w = root.scrollWidth || 1600;
+      if (!h) return;
       var z = Math.min(window.innerWidth / w, window.innerHeight / h, 1.25);
-      if (Math.abs(z - last) < 0.003) return;   // only write when the scale actually changed → no per-tick jank
-      last = z;
-      root.style.transform = 'scale(' + z + ')';
+      if (!isFinite(z) || z <= 0) z = 1;
+      root.style.zoom = String(z);
     }
     window.addEventListener('resize', fit);
     // screens change on interaction — re-fit right after any click so the new screen (e.g. the inbox) fits fully
-    document.addEventListener('pointerdown', function () { setTimeout(fit, 40); setTimeout(fit, 200); }, true);
-    setInterval(fit, 350);                        // safety net for non-click transitions (recap, video results…)
+    document.addEventListener('pointerdown', function () { setTimeout(fit, 40); setTimeout(fit, 220); }, true);
+    setInterval(fit, 600);                        // safety net for non-click transitions (recap, video results…)
     fit(); setTimeout(fit, 200); setTimeout(fit, 700); setTimeout(fit, 1500);
   }
   if (document.readyState !== 'loading') start(); else document.addEventListener('DOMContentLoaded', start);
