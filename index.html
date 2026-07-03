@@ -2997,7 +2997,9 @@ class Component extends DCLogic {
     window.addEventListener('resize', fit);
     // screens change on interaction — re-fit right after any click so the new screen (e.g. the inbox) fits fully
     document.addEventListener('pointerdown', function () { setTimeout(fit, 40); setTimeout(fit, 220); }, true);
-    setInterval(fit, 600);                        // safety net for non-click transitions (recap, video results…)
+    // safety net for non-click transitions (recap, video results…) — only when the browser is idle, so it never causes a hitch
+    var ric = window.requestIdleCallback || function (f) { return setTimeout(f, 800); };
+    (function loop() { ric(function () { fit(); setTimeout(loop, 900); }); })();
     fit(); setTimeout(fit, 200); setTimeout(fit, 700); setTimeout(fit, 1500);
   }
   if (document.readyState !== 'loading') start(); else document.addEventListener('DOMContentLoaded', start);
