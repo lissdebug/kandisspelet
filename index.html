@@ -342,7 +342,7 @@
 </style>
 </helmet>
 
-<div style="height:100vh;background:#0e0c09;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:'Archivo',sans-serif;box-sizing:border-box;">
+<div style="height:100vh;background:#f6f2e9;overflow:hidden;font-family:'Archivo',sans-serif;box-sizing:border-box;">
 
   <!-- NOTIS-TOASTER (utanför zoom-kontexten för att undvika repaint-studs) -->
   <div style="position:fixed;top:13px;right:13px;z-index:9999;display:flex;flex-direction:column;gap:9px;width:300px;pointer-events:none;">
@@ -357,7 +357,7 @@
     </sc-for>
   </div>
 
-  <div data-screen-label="Spel" style="width:1600px;flex:none;background:#f6f2e9;overflow:hidden;">
+  <div data-screen-label="Spel" style="width:100%;background:#f6f2e9;overflow:hidden;">
 
     <!-- MASTHEAD -->
     <div style="background:#d4112a;padding:11px 24px;display:flex;align-items:center;justify-content:space-between;">
@@ -2986,11 +2986,11 @@ class Component extends DCLogic {
     var root = document.querySelector('[data-screen-label="Spel"]');
     if (!root) { setTimeout(start, 150); return; }
     function fit() {
-      // measure natural size at zoom 1, then set zoom — synchronous, so only the final value paints (no flash)
+      // width:100% already fills the browser width — just scale so the full height fits (no black bars, fills the screen)
       root.style.zoom = '1';
-      var h = root.scrollHeight, w = root.scrollWidth || 1600;
+      var h = root.scrollHeight;
       if (!h) return;
-      var z = Math.min(window.innerWidth / w, window.innerHeight / h, 1.25);
+      var z = Math.min(window.innerHeight / h, 1.4);
       if (!isFinite(z) || z <= 0) z = 1;
       root.style.zoom = String(z);
     }
