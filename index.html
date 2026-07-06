@@ -791,8 +791,8 @@
           <div style="position:absolute;left:0;right:0;bottom:30%;height:4px;background:rgba(0,0,0,.26);"></div>
           <!-- matta -->
           <div style="position:absolute;left:8%;bottom:4%;width:38%;height:17px;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,rgba(255,190,150,.20),transparent 72%);"></div>
-          <!-- nattduksbord + lampa -->
-          <div style="position:absolute;left:34%;bottom:11%;width:30px;height:54px;z-index:2;">
+          <!-- nattduksbord + lampa (klickbar) -->
+          <div onclick="{{ onLamp }}" title="Lampan" style="cursor:pointer;position:absolute;left:34%;bottom:11%;width:30px;height:54px;z-index:2;"><div style="position:absolute;right:-4px;top:-2px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 6px rgba(255,255,255,.9);animation:flick 2.4s ease-in-out infinite .3s;z-index:4;"></div>
             <div style="position:absolute;left:0;bottom:0;width:30px;height:24px;border-radius:3px;background:#4a4156;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);"></div>
             <div style="position:absolute;left:5px;bottom:9px;width:20px;height:2px;border-radius:2px;background:rgba(0,0,0,.3);"></div>
             <div style="position:absolute;left:13px;bottom:24px;width:4px;height:11px;background:#2c2838;"></div>
@@ -830,13 +830,13 @@
           </sc-if>
 
           <sc-if value="{{ showNeon }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:7%;top:3%;font:700 15px 'Space Grotesk';letter-spacing:.08em;color:#ff7ed8;text-shadow:0 0 8px rgba(255,90,200,.9),0 0 18px rgba(255,90,200,.55);z-index:2;">{{ neonName }}</div>
+            <div onclick="{{ onNeon }}" title="Neon-skylten" style="cursor:pointer;position:absolute;left:7%;top:3%;font:700 15px 'Space Grotesk';letter-spacing:.08em;color:#ff7ed8;text-shadow:0 0 8px rgba(255,90,200,.9),0 0 18px rgba(255,90,200,.55);z-index:2;">{{ neonName }}</div>
           </sc-if>
           <sc-if value="{{ showChand }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;left:42%;top:-3px;width:54px;height:26px;border-radius:0 0 27px 27px;background:radial-gradient(circle at 50% 0,rgba(255,225,160,.95),rgba(255,205,130,.25) 70%,transparent);box-shadow:0 0 26px rgba(255,215,150,.7);z-index:2;"></div>
           </sc-if>
           <sc-if value="{{ showAward }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:39%;top:18%;display:flex;gap:6px;z-index:2;">
+            <div onclick="{{ onAward }}" title="Prisstatyetterna" style="cursor:pointer;position:absolute;left:39%;top:18%;display:flex;gap:6px;z-index:2;">
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#ffe9a8,#caa53e);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#e9e9ef,#9a9aa6);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
             </div>
@@ -870,7 +870,7 @@
             </div>
           </sc-if>
           <sc-if value="{{ showPlant }}" hint-placeholder-val="{{ false }}">
-            <div style="position:absolute;left:29%;bottom:10%;width:24px;height:42px;z-index:1;">
+            <div onclick="{{ onPlant }}" title="Växten" style="cursor:pointer;position:absolute;left:29%;bottom:10%;width:24px;height:42px;z-index:1;">
               <div style="position:absolute;left:4px;bottom:0;width:16px;height:15px;border-radius:3px 3px 5px 5px;background:#9a6a4a;"></div>
               <div style="position:absolute;left:1px;bottom:11px;width:22px;height:31px;border-radius:60% 60% 40% 40%;background:radial-gradient(circle at 50% 100%,#3c7a4e,#2c5e3c);"></div>
             </div>
@@ -897,6 +897,9 @@
           </button>
 
           <div style="position:absolute;left:12px;bottom:10px;font:700 10px/1 'Space Grotesk';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.42);padding:6px 10px;border-radius:99px;z-index:3;">🏠 {{ roomLabel }}</div>
+          <sc-if value="{{ showRoomHint }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;left:50%;bottom:9px;transform:translateX(-50%);font:700 10px/1 'Space Grotesk';letter-spacing:.06em;color:#1a1916;background:#ffe34d;padding:7px 13px;border-radius:99px;z-index:5;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.45);animation:popin .4s ease;">👆 Klicka runt — allt i rummet svarar</div>
+          </sc-if>
 
           <!-- SCEN-OVERLAY (höger) -->
           <sc-if value="{{ isSceneDm }}" hint-placeholder-val="{{ false }}">
@@ -1206,7 +1209,7 @@ class Component extends DCLogic {
     pendingOver: null, forcedNext: null, deck: [], weeklyNote: '', overReason: null,
     name: 'Liza', handle: '@LUXE_LIZA',
     statusSeen: 0, peakFollowers: 850, comments: [], msStatus: '', pendingScenario: null,
-    roomThought: '', idleSecs: 0, waitSecs: 0, waitDuration: 6, waitResult: null, liveViews: 0,
+    roomThought: '', roomHinted: false, idleSecs: 0, waitSecs: 0, waitDuration: 6, waitResult: null, liveViews: 0,
     gameHour: 8, gameDay: 1, pendingVideos: [], resultQueue: [], isQueueResult: false,
     suspicion: 0, shadowbanWeeks: 0, shopFeedback: '', hitRockBottom: false,
     owned: [], lifestyleFeedback: '', contentQuality: 0, lifestyleCategory: 'Teknik', staff: [], teamFeedback: '',
@@ -2299,11 +2302,20 @@ class Component extends DCLogic {
     } else if (kind === 'wardrobe') {
       pool = t >= 4 ? ['Garderoben är större än din förra lägenhet.', '”Inget att ha på sig”, i en walk-in-closet.']
         : ['Samma tre outfits i rotation. Ingen märker. Hoppas du.', 'Vad signalerar ”äkta men ansträngningslös”?'];
+    } else if (kind === 'lamp') {
+      pool = ['Ska jag sova? Nej — algoritmen sover aldrig.', 'Lampan surrar. Enda sällskapet ikväll.', 'Ett varmt sken. Nästan som värme.'];
+    } else if (kind === 'plant') {
+      pool = s.mental < 40 ? ['Glömde vattna den. Igen. Symboliskt.', 'Den klarar sig bättre utan mig.']
+        : ['Enda levande som inte vill ha något av mig.', 'Grönt. Jag borde vara ute mer.', 'Växer långsamt — precis som äkta saker.'];
+    } else if (kind === 'neon') {
+      pool = ['Mitt namn i rosa. Barndoms-jag hade svimmat.', 'Lyser fint. Betalar inte hyran, men lyser.', t >= 4 ? 'Alla känner det namnet nu.' : 'Snart känner alla det namnet.'];
+    } else if (kind === 'award') {
+      pool = ['Tunga. Tommare än jag trodde.', 'En bit metall för allt jag offrat.', 'Damm på priset redan. Nästa, nästa.'];
     } else {
       const shared = ['Allt känns så långt bort — men det är närmare än du tror.', 'Undrar om Lady Gaga ser på samma måne just nu.', 'Glöm inte att stanna upp och känna tacksamhet för hur långt du kommit.', 'Stjärnorna bryr sig inte om följarsiffror. Skönt, faktiskt.', 'Någonstans där ute sover en hel stad. Du är vaken med dina tankar.', 'Andas. Det här ögonblicket är också ditt liv.'];
       pool = (this.THOUGHTS[t] || this.THOUGHTS[0]).concat(shared);
     }
-    this.setState({ roomThought: pool[Math.floor(Math.random() * pool.length)] });
+    this.setState({ roomThought: pool[Math.floor(Math.random() * pool.length)], roomHinted: true });
   };
 
   pickNext(deck, forced) {
@@ -2772,7 +2784,7 @@ class Component extends DCLogic {
       this._emojiTimer = setTimeout(() => this._parseEmoji(), 150);
     }
     try {
-      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: (s.phase === 'weekwait' || s.phase === 'inbox' || s.phase === 'shop' || s.phase === 'lifestyle' || s.phase === 'team' || s.phase === 'trophies') ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks }));
+      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: (s.phase === 'weekwait' || s.phase === 'inbox' || s.phase === 'shop' || s.phase === 'lifestyle' || s.phase === 'team' || s.phase === 'trophies') ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks, roomHinted: s.roomHinted }));
     } catch (e) {}
   }
 
@@ -2868,6 +2880,8 @@ class Component extends DCLogic {
       neonName: (s.name || 'Liza').toUpperCase(),
       roomThought: s.roomThought || '',
       onWindow: () => this.peek('window'), onMirror: () => this.peek('mirror'), onPhone: () => this.peek('phone'), onWardrobe: () => this.peek('wardrobe'),
+      onLamp: () => this.peek('lamp'), onPlant: () => this.peek('plant'), onNeon: () => this.peek('neon'), onAward: () => this.peek('award'),
+      showRoomHint: !s.roomHinted,
       handle: s.handle,
       statusLabel: this.statusOf(s.followers),
       nivaLabel: 'Nivå ' + s.week,
