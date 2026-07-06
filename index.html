@@ -791,13 +791,14 @@
           <div style="position:absolute;left:0;right:0;bottom:30%;height:4px;background:rgba(0,0,0,.26);"></div>
           <!-- matta -->
           <div style="position:absolute;left:8%;bottom:4%;width:38%;height:17px;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,rgba(255,190,150,.20),transparent 72%);"></div>
-          <!-- nattduksbord + lampa (klickbar) -->
-          <div onclick="{{ onLamp }}" title="Lampan" style="cursor:pointer;position:absolute;left:34%;bottom:11%;width:30px;height:54px;z-index:2;"><div style="position:absolute;right:-4px;top:-2px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 6px rgba(255,255,255,.9);animation:flick 2.4s ease-in-out infinite .3s;z-index:4;"></div>
+          <!-- nattduksbord + lampa -->
+          <div style="position:absolute;left:34%;bottom:11%;width:30px;height:54px;z-index:2;">
             <div style="position:absolute;left:0;bottom:0;width:30px;height:24px;border-radius:3px;background:#4a4156;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);"></div>
             <div style="position:absolute;left:5px;bottom:9px;width:20px;height:2px;border-radius:2px;background:rgba(0,0,0,.3);"></div>
             <div style="position:absolute;left:13px;bottom:24px;width:4px;height:11px;background:#2c2838;"></div>
             <div style="position:absolute;left:6px;bottom:33px;width:18px;height:15px;background:linear-gradient(180deg,#ffe7b4,#ffcf80);box-shadow:0 0 22px rgba(255,210,140,.8);clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);"></div>
           </div>
+          <button onclick="{{ onLamp }}" title="Lampan" style="position:absolute;left:34%;bottom:11%;width:32px;height:54px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"><span style="position:absolute;right:-3px;top:-2px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 6px rgba(255,255,255,.9);animation:flick 2.4s ease-in-out infinite .3s;"></span></button>
 
           <!-- FÖNSTER (klickbar hotspot) -->
           <button onclick="{{ onWindow }}" title="Titta ut genom fönstret" style="position:absolute;left:6%;top:17%;width:37%;height:50%;border:none;margin:0;padding:0;cursor:pointer;border-radius:3px;background:{{ roomView }};box-shadow:0 0 0 6px rgba(0,0,0,.28),inset 0 0 28px rgba(0,0,0,.4);overflow:hidden;" style-hover="box-shadow:0 0 0 6px rgba(255,255,255,.22),inset 0 0 28px rgba(0,0,0,.4);">
@@ -830,13 +831,15 @@
           </sc-if>
 
           <sc-if value="{{ showNeon }}" hint-placeholder-val="{{ false }}">
-            <div onclick="{{ onNeon }}" title="Neon-skylten" style="cursor:pointer;position:absolute;left:7%;top:3%;font:700 15px 'Space Grotesk';letter-spacing:.08em;color:#ff7ed8;text-shadow:0 0 8px rgba(255,90,200,.9),0 0 18px rgba(255,90,200,.55);z-index:2;">{{ neonName }}</div>
+            <div style="position:absolute;left:7%;top:3%;font:700 15px 'Space Grotesk';letter-spacing:.08em;color:#ff7ed8;text-shadow:0 0 8px rgba(255,90,200,.9),0 0 18px rgba(255,90,200,.55);z-index:2;">{{ neonName }}</div>
+            <button onclick="{{ onNeon }}" title="Neon-skylten" style="position:absolute;left:6%;top:2%;width:44%;height:24px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"></button>
           </sc-if>
           <sc-if value="{{ showChand }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;left:42%;top:-3px;width:54px;height:26px;border-radius:0 0 27px 27px;background:radial-gradient(circle at 50% 0,rgba(255,225,160,.95),rgba(255,205,130,.25) 70%,transparent);box-shadow:0 0 26px rgba(255,215,150,.7);z-index:2;"></div>
           </sc-if>
           <sc-if value="{{ showAward }}" hint-placeholder-val="{{ false }}">
-            <div onclick="{{ onAward }}" title="Prisstatyetterna" style="cursor:pointer;position:absolute;left:39%;top:18%;display:flex;gap:6px;z-index:2;">
+            <button onclick="{{ onAward }}" title="Priser" style="position:absolute;left:38%;top:16%;width:58px;height:28px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"></button>
+            <div style="position:absolute;left:39%;top:18%;display:flex;gap:6px;z-index:2;">
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#ffe9a8,#caa53e);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#e9e9ef,#9a9aa6);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
             </div>
@@ -870,7 +873,8 @@
             </div>
           </sc-if>
           <sc-if value="{{ showPlant }}" hint-placeholder-val="{{ false }}">
-            <div onclick="{{ onPlant }}" title="Växten" style="cursor:pointer;position:absolute;left:29%;bottom:10%;width:24px;height:42px;z-index:1;">
+            <button onclick="{{ onPlant }}" title="Växten" style="position:absolute;left:28%;bottom:9%;width:28px;height:44px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"></button>
+            <div style="position:absolute;left:29%;bottom:10%;width:24px;height:42px;z-index:1;">
               <div style="position:absolute;left:4px;bottom:0;width:16px;height:15px;border-radius:3px 3px 5px 5px;background:#9a6a4a;"></div>
               <div style="position:absolute;left:1px;bottom:11px;width:22px;height:31px;border-radius:60% 60% 40% 40%;background:radial-gradient(circle at 50% 100%,#3c7a4e,#2c5e3c);"></div>
             </div>
