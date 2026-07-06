@@ -362,8 +362,12 @@
     <!-- MASTHEAD -->
     <div style="background:#d4112a;padding:11px 24px;display:flex;align-items:center;justify-content:space-between;">
       <span onclick="{{ onBackToGame }}" title="Tillbaka till spelet" style="cursor:pointer;font:400 30px/1 'Anton';letter-spacing:.02em;color:#fff;text-transform:uppercase;white-space:nowrap;">Kändis-Liv</span>
+      <sc-if value="{{ isPaused }}" hint-placeholder-val="{{ false }}">
+        <span style="font:700 12px/1 'Archivo';letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.32);padding:7px 14px;border-radius:99px;animation:flick 1.1s ease-in-out infinite;white-space:nowrap;">⏸ Pausat</span>
+      </sc-if>
       <div style="display:flex;align-items:center;gap:14px;">
         <span style="font:700 10px/1.3 'Archivo';color:#ffd9df;text-align:right;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;">Sveriges<br>hetaste flöde</span>
+        <button onclick="{{ onTogglePause }}" style="cursor:pointer;border:none;background:rgba(0,0,0,.25);color:#fff;font:400 13px/1 'Archivo';width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;" title="Pausa / fortsätt">{{ pauseIcon }}</button>
         <button onclick="{{ onToggleMusic }}" style="cursor:pointer;border:none;background:rgba(0,0,0,.25);color:#fff;font:400 13px/1 'Archivo';width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;" title="Musik på/av">{{ musicIcon }}</button>
         <button onclick="{{ onQuit }}" style="cursor:pointer;border:none;background:rgba(0,0,0,.25);color:#fff;font:700 13px/1 'Archivo';width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;" title="Avsluta">✕</button>
       </div>
@@ -2041,6 +2045,7 @@ class Component extends DCLogic {
       this.setState({ phase: s.shopReturnPhase || 'scenario', shopReturnPhase: null, dmOpen: null, idleSecs: 0 });
     }
   };
+  onTogglePause = () => this.setState({ paused: !this.state.paused });
 
   SHADOW_MS = 48 * 60 * 60 * 1000; // 48h riktig tid = "10 veckor". Sänk för test.
   beginWaitout = (kind) => {
@@ -2098,6 +2103,7 @@ class Component extends DCLogic {
 
   tick = () => {
     const s = this.state;
+    if (s.paused) return;                 // pause freezes the clock, idle/buzz, DM drops and video timers
     const h = ((s.gameHour || 8) + 1) % 24;
     const gd = s.gameDay || 1; // only advances on Nästa vecka, not every tick
     // Always process pending video countdowns
@@ -2884,6 +2890,7 @@ class Component extends DCLogic {
       }),
       onBackToGame: this.onBackToGame,
       onOpenShop: this.onOpenShop, onCloseShop: this.onCloseShop, onOpenNewAccount: this.onOpenNewAccount, onServeShadowban: this.onServeShadowban, onPsych: this.onPsych, onRetreat: this.onRetreat, onJob: this.onJob,
+      onTogglePause: this.onTogglePause, pauseIcon: s.paused ? '▶' : '⏸', isPaused: !!s.paused,
       onToggleMusic: this.onToggleMusic, musicIcon: s.musicOn ? '🔊' : '🔇',
       isLifestyle: s.phase === 'lifestyle',
       onOpenLifestyle: this.onOpenLifestyle, onCloseLifestyle: this.onCloseLifestyle,
