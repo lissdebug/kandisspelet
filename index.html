@@ -1877,13 +1877,13 @@ class Component extends DCLogic {
   };
 
   onOpenLifestyle = () => this.setState({ phase: 'lifestyle', lifestyleFeedback: '', shopReturnPhase: this.state.phase });
-  onCloseLifestyle = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null });
+  onCloseLifestyle = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null, idleSecs: 0 });
 
   onOpenTeam = () => this.setState({ phase: 'team', teamFeedback: '', shopReturnPhase: this.state.phase });
-  onCloseTeam = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null });
+  onCloseTeam = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null, idleSecs: 0 });
 
   onOpenTrophies = () => this.setState({ phase: 'trophies', shopReturnPhase: this.state.phase });
-  onCloseTrophies = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null });
+  onCloseTrophies = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null, idleSecs: 0 });
 
   DM_TEMPLATES = [
     { id:'love1', kicker:'💌 Superfan', text:'”jag har sett alla dina videos typ 4 gånger... du fick mig genom en skitvecka fr 🫶”', opts:[
@@ -1996,7 +1996,7 @@ class Component extends DCLogic {
       dms: (s.dms || []).filter(d => d.uid !== uid), dmFeedback: opt.reply, dmOpen: null });
   };
   onOpenInbox = () => this.setState({ phase: 'inbox', dmFeedback: '', dmOpen: null, toasts: [], shopReturnPhase: this.state.phase });
-  onCloseInbox = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null });
+  onCloseInbox = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null, idleSecs: 0 });
   toggleStaff = (id) => {
     const s = this.state;
     const st = this.STAFF.find(x => x.id === id);
@@ -2033,12 +2033,12 @@ class Component extends DCLogic {
   ];
 
   onOpenShop = () => this.setState({ phase: 'shop', shopFeedback: '', shopReturnPhase: this.state.phase });
-  onCloseShop = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null });
+  onCloseShop = () => this.setState({ phase: this.state.shopReturnPhase || 'scenario', shopReturnPhase: null, idleSecs: 0 });
   // click the "Kändis-Liv" logo to jump back to the game from any overlay (shop/inbox/team/trophies/lifestyle)
   onBackToGame = () => {
     const s = this.state;
     if (['shop', 'lifestyle', 'team', 'trophies', 'inbox'].includes(s.phase)) {
-      this.setState({ phase: s.shopReturnPhase || 'scenario', shopReturnPhase: null, dmOpen: null });
+      this.setState({ phase: s.shopReturnPhase || 'scenario', shopReturnPhase: null, dmOpen: null, idleSecs: 0 });
     }
   };
 
