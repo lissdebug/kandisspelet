@@ -1219,6 +1219,73 @@ class Component extends DCLogic {
   nameRef = React.createRef();
 
   data = {
+    s_hotmic: { kicker: 'Oj', headline: 'Du glömde stänga av kameran', body: 'I tio minuter sände du allt — suckar, gnäll om fansen, en ganska elak kommentar om en kollega. Klippet finns redan överallt.', choices: [
+      { label: 'Skratta åt det själv först', risky: true, roll: [
+        { w: 6, vibe: 'love', effects: { followersPct: 0.04, publicity: 12, mental: -4 }, result: { kicker: 'Mänskligt', headline: 'Liza äger sin blunder', sub: 'Hon skrattade högst av alla — fansen älskar en stjärna som inte låtsas vara perfekt.' } },
+        { w: 4, effects: { followersPct: -0.06, publicity: 16, mental: -12 }, result: { kicker: 'Snöboll', headline: 'Hot mic-drevet växer', sub: 'Kollegan svarade. Nu är det en fejd. Ingen minns vem som började.' } }
+      ] },
+      { label: 'Radera och be om ursäkt', effects: { followersPct: -0.02, publicity: 6, mental: 2 }, result: { kicker: 'Diplomati', headline: 'Liza slätar över', sub: 'Ett kort sorry. Stormen mojnar, men skärmdumparna lever vidare.' } },
+      { label: 'Låtsas att det var med flit', effects: { publicity: 20, followersPct: -0.03, mental: -6 }, result: { kicker: 'Chansning', headline: '”Allt är content”', sub: 'Du hävdar att det var en grej. Halva nätet köper det, andra halvan himlar med ögonen.' } }
+    ] },
+    s_algochange: { type: 'event', kicker: 'Plattformen', headline: 'Algoritmen ändrades över natten', body: 'Din räckvidd halverades medan du sov. Ingen vet varför. Alla influencers skriker i panik.', choices: [
+      { label: 'Jaga det nya formatet direkt', effects: { publicity: 14, mental: -10, followersPct: 0.03 }, result: { kicker: 'Anpassning', headline: 'Liza knäcker koden', sub: 'Du kastade om allt över en helg. Utmattande — men siffrorna kryper tillbaka.' } },
+      { label: 'Vägra dansa efter algoritmen', effects: { followersPct: -0.05, mental: 8, publicity: -4 }, result: { kicker: 'Principer', headline: 'Liza står kvar', sub: '”Jag gör mitt.” Mindre räckvidd, men du sover bättre än de som jagar.' } }
+    ] },
+    s_disstrack: { kicker: 'Drama', headline: 'En rival släppte en diss-låt om dig', body: 'Tre minuter ren pikar, med ditt namn i refrängen. Den klättrar redan på topplistan.', choices: [
+      { label: 'Släpp en egen svarslåt', risky: true, roll: [
+        { w: 5, effects: { followersPct: 0.12, publicity: 30, mental: -8 }, result: { kicker: 'Beef', headline: 'Lizas svar exploderar', sub: 'Din diss blev bättre än originalet. Halva nätet tar din sida.' } },
+        { w: 5, effects: { followersPct: -0.06, publicity: 22, mental: -12 }, result: { kicker: 'Pinsamt', headline: 'Lizas svar floppar', sub: 'Du rimmade ”hater” med ”senare”. Internet skrattar — åt dig.' } }
+      ] },
+      { label: 'Ta det stilla — inget svar', effects: { followersPct: 0.02, publicity: -2, mental: 4 }, result: { kicker: 'Klass', headline: 'Liza höjer sig', sub: 'Tystnad. Vissa kallar dig feg, fler kallar dig vuxen.' } }
+    ] },
+    s_paywall: { kicker: 'Pengar', headline: 'Lägg det bästa bakom en betalvägg?', body: 'En plattform lockar med prenumeranter som betalar för exklusivt. Stabil inkomst — men gratis-fansen kan känna sig lämnade.', choices: [
+      { label: 'Kör betalt, exklusivt innehåll', effects: { money: 20000, followersPct: -0.05, publicity: 4, mental: 2 }, result: { kicker: 'Prenumeration', headline: 'Liza går bakom vägg', sub: 'Trogna betalar gärna. Andra muttrar om girighet, men kontot ler.' } },
+      { label: 'Håll allt gratis', effects: { followersPct: 0.03, mental: 4, money: -2000 }, result: { kicker: 'För folket', headline: 'Liza håller det öppet', sub: '”Content ska vara för alla.” Mindre pengar, mer kärlek.' } }
+    ] },
+    s_boycott: { kicker: 'Krisläge', headline: 'Fansen kräver att du droppar en sponsor', body: 'Det visade sig att ditt märke gjort otäcka saker. #DropThem trendar. Kontraktet är värt en förmögenhet.', choices: [
+      { label: 'Bryt kontraktet offentligt', effects: { money: -15000, followersPct: 0.08, publicity: 18, mental: 6 }, result: { kicker: 'Ryggrad', headline: 'Liza säger upp deal', sub: 'Du valde fansen framför pengarna. Sällsynt — och det syns.' } },
+      { label: 'Behåll pengarna, tig', effects: { money: 20000, followersPct: -0.12, publicity: 14, mental: -10 }, result: { kicker: 'Tyst medlöpare', headline: 'Liza behåller sponsorn', sub: 'Pengarna kom in. Så gjorde en våg av avföljare.' } }
+    ] },
+    s_haul: { kicker: 'Innehållstips', headline: 'Gör ett gigantiskt shopping-haul', body: 'Femtio paket, en kamera, oändlig dopamin. Tittarna älskar haul. Men överkonsumtion är inte längre en bra look.', choices: [
+      { label: 'Kör det största haulet någonsin', effects: { money: -12000, publicity: 20, followersPct: 0.04, mental: -4 }, result: { kicker: 'Överflöd', headline: 'Lizas haul går viralt', sub: 'Bergen av lådor blev veckans mest sedda klipp — och veckans mest kritiserade.' } },
+      { label: 'Gör ett ”second hand-haul” istället', effects: { money: -2000, publicity: 10, followersPct: 0.05, mental: 4 }, result: { kicker: 'Medvetet', headline: 'Liza thriftar', sub: 'Begagnat och charmigt. Fansen hyllar — och sparar skärmdumpar till nästa gång du floppar.' } }
+    ] },
+    s_greenscreen: { kicker: 'Avslöjat', headline: 'Någon såg green screenen i din ”Bali-story”', body: 'Du var hemma i soffan hela tiden. En reflektion i glasögonen avslöjade allt. #BaliGate rullar.', choices: [
+      { label: 'Erkänn med glimten i ögat', effects: { followersPct: 0.03, publicity: 14, mental: -2 }, result: { kicker: 'Charm', headline: 'Liza: ”Bali var i mitt hjärta”', sub: 'Du skämtade om det själv. Fansen förlåter det roliga snabbare än det pinsamma.' } },
+      { label: 'Neka allt', risky: true, roll: [
+        { w: 4, effects: { publicity: 8, followersPct: -0.02 }, result: { kicker: 'Räddad?', headline: 'Liza står på sig', sub: 'Ingen kan bevisa något — än. Du andas ut, tillfälligt.' } },
+        { w: 6, effects: { followersPct: -0.1, publicity: 20, mental: -12 }, result: { kicker: 'Sågad', headline: 'Fler bevis dyker upp', sub: 'Grannarna postade dig i mataffären ”samma dag som Bali”. Kört.' } }
+      ] }
+    ] },
+    s_therapytrauma: { kicker: 'Sårbart', headline: 'Ska du göra content av din terapi?', body: 'En ärlig video om din tuffaste tid skulle röra miljoner — och boosta allt. Men vissa sår kanske inte ska sändas.', choices: [
+      { label: 'Dela allt, oredigerat', risky: true, roll: [
+        { w: 6, vibe: 'love', effects: { followersPct: 0.1, publicity: 20, mental: -8 }, result: { kicker: 'Äkta', headline: 'Lizas sårbarhet berör', sub: 'Tusentals skriver ”samma här”. Du hjälpte folk — men gav bort en bit av dig själv.' } },
+        { w: 4, effects: { mental: -16, publicity: 12, followersPct: 0.03 }, result: { kicker: 'För mycket', headline: 'Liza ångrar delningen', sub: 'Kommentarerna grävde där det gjorde ont. Du kan inte ta tillbaka det nu.' } }
+      ] },
+      { label: 'Behåll det privat', effects: { mental: 8, publicity: -4 }, result: { kicker: 'Gräns', headline: 'Liza håller något för sig själv', sub: 'Inte allt är content. Lugnet i bröstet är värt mer än vyerna.' } }
+    ] },
+    s_conspiracy: { kicker: 'Farligt', headline: 'En fangrupp drar in dig i en konspiration', body: 'De kallar dig ”den enda som ser sanningen”. Engagemanget är enormt. Innehållet är… tveksamt.', choices: [
+      { label: 'Distansera dig tydligt', effects: { followersPct: -0.04, publicity: 6, mental: 5 }, result: { kicker: 'Ansvar', headline: 'Liza tar avstånd', sub: 'Du tappade de mest högljudda. Bra riddance, säger din agent.' } },
+      { label: 'Flörta med det för räckvidden', effects: { publicity: 26, followersPct: 0.06, mental: -12 }, result: { kicker: 'Ruttet', headline: 'Liza spelar med elden', sub: 'Siffrorna skenar och samvetet skaver. Det här slutar sällan bra.' } }
+    ] },
+    s_ghostcaptions: { kicker: 'Avslöjat', headline: '”Skriver AI alla dina texter?”', body: 'Ett troll la upp bevis på att dina ”djupa” bildtexter är AI-genererade. Det sprids fort.', choices: [
+      { label: 'Erkänn: ”Jag använder verktyg”', effects: { followersPct: -0.02, publicity: 8, mental: 2 }, result: { kicker: 'Ärligt', headline: 'Liza: ”Alla gör det”', sub: 'Du normaliserade det. Vissa rycker på axlarna, vissa känner sig lurade.' } },
+      { label: 'Skriv nästa text själv, live', effects: { followersPct: 0.04, publicity: 10, mental: -6 }, result: { kicker: 'Bevis', headline: 'Liza skriver på direkten', sub: 'Klumpigt men äkta. Fansen respekterar ansträngningen.' } }
+    ] },
+    s_fanmeet: { type: 'event', kicker: 'Inbjudan', headline: 'Spontan fan-meetup i city', body: 'Du twittrade en plats på skoj. Nu står 300 personer där. Ingen säkerhet, inget tillstånd.', choices: [
+      { label: 'Gå och möt allihop', risky: true, roll: [
+        { w: 6, vibe: 'love', effects: { followersPct: 0.08, publicity: 20, mental: 6 }, result: { kicker: 'Kärlek', headline: 'Lizas meetup blir magisk', sub: 'Kramar, tårar, tusen selfies. En av de bästa dagarna på länge.' } },
+        { w: 4, effects: { followersPct: -0.03, publicity: 16, mental: -14 }, result: { kicker: 'Kaos', headline: 'Meetup spårar ur', sub: 'Trängsel, polis, en tappad telefon. Rubrikerna skriver sig själva.' } }
+      ] },
+      { label: 'Ställ in — för farligt', effects: { followersPct: -0.03, publicity: 4, mental: 2 }, result: { kicker: 'Försiktigt', headline: 'Liza ställer in', sub: 'Besvikna fans, men ingen skadad. Tråkigt är ibland rätt.' } }
+    ] },
+    s_deadline: { kicker: 'Press', headline: 'Sponsorns deadline krockar med din vägg', body: 'Tre inlägg innan midnatt annars ryker dealen. Du är helt slut. Kroppen säger stopp.', choices: [
+      { label: 'Pressa igenom natten', effects: { money: 14000, mental: -16, publicity: 8 }, result: { kicker: 'Utmattning', headline: 'Liza levererar — knappt', sub: 'Deadline klarad. Priset betalades i sömn och tårar.' } },
+      { label: 'Be om uppskov ärligt', risky: true, roll: [
+        { w: 6, effects: { mental: 8, money: 6000 }, result: { kicker: 'Mänskligt', headline: 'Sponsorn förstår', sub: 'De gav dig två dagar till. Ärlighet räckte den här gången.' } },
+        { w: 4, effects: { money: -4000, mental: 2, followersPct: -0.01 }, result: { kicker: 'Nobben', headline: 'Dealen drogs tillbaka', sub: 'De hittade någon hungrigare. Din hälsa kvar, plånboken lättare.' } }
+      ] }
+    ] },
     s_fandm: { kicker: 'Inkorg', headline: 'Ett superfan glider in i dina DM', body: '”Du är det vackraste jag nånsin sett. Snälla svara, jag tänker på dig hela tiden.” Sött? Eller lite för intensivt? Du vet inte förrän du svarar.', choices: [
       { label: 'Svara varmt och tacka', risky: true, roll: [
         { w: 6, vibe: 'love', effects: { mental: 13, followersPct: 0.03, publicity: 3 }, result: { kicker: 'Närhet', headline: 'Liza svarar sina fans', sub: 'Ett vänligt svar — fansen smälter, och du känner dig faktiskt sedd tillbaka för en gångs skull.' } },
@@ -1631,7 +1698,7 @@ class Component extends DCLogic {
     ]}
   };
 
-  baseIds() { return ['s_fast','s_rage','s_cancel','s_partner','s_network','s_gala','s_crypto','s_bots','s_break','s_charity','s_drama','s_dubai','s_fandm','s_detox','s_ai','s_leak','s_merch','s_podcast','s_collab','s_throwback','s_paparazzi','s_gambling','s_surgery','s_pet','s_reunion','s_doc','s_challenge','s_book','s_flex','s_award','s_oldfriend','s_tax','s_stalker','s_sibling','s_relapse','s_political','s_dropship','s_deepfake','s_burner','s_subscription','s_festival','s_ghosting','s_authenticity','s_intervention','s_kidbrand','s_comeback','s_wedding','s_nft','s_ghostcaught','s_exclusive','s_stolen','s_agelie','s_filter','s_charitystream','s_breakup','s_mgmt','s_trademark','s_fakegiveaway','s_oldboss','s_aiart','s_clone','s_reality','s_rerun','s_endorse','s_skincare','s_fanart','s_newgen','s_streamfail','s_healthadvice','s_aicompanion','s_dox','s_school','s_lawsuit','s_meme']; }
+  baseIds() { return ['s_fast','s_rage','s_cancel','s_partner','s_network','s_gala','s_crypto','s_bots','s_break','s_charity','s_drama','s_dubai','s_fandm','s_detox','s_ai','s_leak','s_merch','s_podcast','s_collab','s_throwback','s_paparazzi','s_gambling','s_surgery','s_pet','s_reunion','s_doc','s_challenge','s_book','s_flex','s_award','s_oldfriend','s_tax','s_stalker','s_sibling','s_relapse','s_political','s_dropship','s_deepfake','s_burner','s_subscription','s_festival','s_ghosting','s_authenticity','s_intervention','s_kidbrand','s_comeback','s_wedding','s_nft','s_ghostcaught','s_exclusive','s_stolen','s_agelie','s_filter','s_charitystream','s_breakup','s_mgmt','s_trademark','s_fakegiveaway','s_oldboss','s_aiart','s_clone','s_reality','s_rerun','s_endorse','s_skincare','s_fanart','s_newgen','s_streamfail','s_healthadvice','s_aicompanion','s_dox','s_school','s_lawsuit','s_meme','s_hotmic','s_algochange','s_disstrack','s_paywall','s_boycott','s_haul','s_greenscreen','s_therapytrauma','s_conspiracy','s_ghostcaptions','s_fanmeet','s_deadline']; }
 
   diff() {
     const d = this.props.difficulty ?? 'Normal';
