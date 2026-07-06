@@ -1979,9 +1979,6 @@ class Component extends DCLogic {
     { id:'collab1', kicker:'🤝 Kollab?', text:'”yo! vi borde göra nåt ihop, min publik skulle DÖ. du + jag = viralt 🔥”', opts:[
       { label:'Kör en kollab', effects:{ followersPct:0.02, publicity:8, mental:-3 }, reply:'Ni gjorde grejen. Nya följare, men schemat sprängde din vecka.' },
       { label:'”Kanske sen”', effects:{ mental:1 }, reply:'Du håller dörren på glänt. Ingen brådska.' } ]},
-    { id:'meme1', kicker:'😂 Meme-konto', text:'”får jag posta ditt ansikte som mall? blir garanterat topp 3 idag”', opts:[
-      { label:'”Kör hårt 😎”', effects:{ publicity:10, followersPct:0.01, mental:-2 }, reply:'Ditt ansikte blev veckans mem. Odödlig — på gott och ont.' },
-      { label:'Nej tack', effects:{ mental:2, publicity:-2 }, reply:'Du sa nej. Mindre buzz, mer värdighet.' } ]},
     { id:'sob1', kicker:'🥺 Sorgligt', text:'”du är min enda ljuspunkt just nu. lovar du att aldrig sluta posta?”', opts:[
       { label:'Skriv något varmt', effects:{ mental:4 }, reply:'Du skrev några ärliga rader. Det betydde nog mer än du tror.' },
       { label:'Skicka stödresurser', effects:{ mental:2, publicity:1 }, reply:'Du länkade till hjälp. Ansvarsfullt — fansen respekterar det.' },
@@ -1991,7 +1988,53 @@ class Component extends DCLogic {
       { label:'Trolla tillbaka', effects:{ mental:3, publicity:2 }, reply:'Du trollade boten och postade svaret. Fansen skrattar med dig.' } ]},
     { id:'ex1', kicker:'📱 Från förr', text:'”hej… såg att det går bra för dig nu. kul. vi kanske kunde ta en kaffe?”', opts:[
       { label:'Svara artigt', effects:{ mental:-2 }, reply:'Du svarade kort och stängde det. Lite grus i själen resten av dan.' },
-      { label:'Lämna oläst', effects:{ mental:1 }, reply:'Oläst. Vissa dörrar ska förbli stängda.' } ]}
+      { label:'Lämna oläst', effects:{ mental:1 }, reply:'Oläst. Vissa dörrar ska förbli stängda.' } ]},
+    { id:'journalist1', kicker:'📰 Journalist', text:'”Hej, jag skriver för Kvällsposten. Kan du kommentera ryktena innan vi går i tryck kl 18?”', opts:[
+      { label:'Ge ett stramt uttalande', effects:{ publicity:8, mental:-3 }, reply:'Du gav dem en rad. Rubriken blev ändå värre än du hoppats.' },
+      { label:'”Ingen kommentar.”', effects:{ publicity:4, mental:-1 }, reply:'Du gav dem inget att vrida på. De skrev något ändå.' },
+      { label:'Ignorera mejlet', effects:{ mental:-2, publicity:6 }, reply:'Du teg. De körde med ”ville inte kommentera”. Klassiskt.' } ]},
+    { id:'kidfan1', kicker:'🧒 Ungt fan', text:'”hej!! jag är 11 och vill bli precis som du när jag blir stor 🥹 vad ska man göra??”', opts:[
+      { label:'Peppa och var ansvarsfull', effects:{ mental:5, followersPct:0.005 }, reply:'Du skrev något varmt och klokt. Barnet kommer minnas det.' },
+      { label:'Standard-hjärta', effects:{ mental:1 }, reply:'Ett hjärta och en tumme upp. Räcker, kanske.' } ]},
+    { id:'parent1', kicker:'👪 Orolig förälder', text:'”Min dotter idoliserar dig. Snälla, var en bra förebild — hon lyssnar mer på dig än på mig.”', opts:[
+      { label:'Lova att skärpa dig', effects:{ mental:-2, followersPct:0.004 }, reply:'Du tog det på allvar. Obekvämt, men en bra påminnelse.' },
+      { label:'”Uppfostra ditt eget barn”', effects:{ mental:2, followersPct:-0.006 }, reply:'Ärligt svar — som lär läcka och tolkas som kallt.' } ]},
+    { id:'trolltypo1', kicker:'🚫 Troll', text:'”ingen gillar dig ens du är så cringe gå o skaffa ett riktgt jobb”', opts:[
+      { label:'Rätta bara stavfelet', effects:{ mental:2, publicity:3 }, reply:'Du svarade ”*riktigt”. Ikoniskt. Kommentarsfältet jublar.' },
+      { label:'Blockera', effects:{ mental:1 }, reply:'Bort. Nästa.' } ]},
+    { id:'obsessed1', kicker:'💍 Besatt', text:'”Jag har bestämt mig — det är du och jag. Gjorde slut med min tjej igår för din skull.”', opts:[
+      { label:'Snäll men stenhård gräns', effects:{ mental:-3, publicity:2 }, reply:'Du var vänlig men glasklar. Han tog det inte bra.' },
+      { label:'Blockera direkt', effects:{ mental:1 }, reply:'Block. Vissa gränser förhandlas inte.' } ]},
+    { id:'mlm1', kicker:'💼 ”Boss babe”', text:'”HEJ QUEEN 👑 Du skulle KROSSA det i mitt team!! Passiv inkomst, jobba var du vill, boss-energi 💅💅”', opts:[
+      { label:'”Hur funkar det då?”', effects:{ money:-3000, mental:-2 }, reply:'Du nappade. Ett ”startkit” senare inser du att DU var produkten.' },
+      { label:'Nej — känner igen pyramiden', effects:{ mental:2 }, reply:'Snyggt undvikit. Den där tröjan har du sett förr.' } ]},
+    { id:'hackwarn1', kicker:'⚠️ Varning', text:'”öh… nån DM:ade mig från ditt konto och bad om Swish? tror du är hackad, kolla asap!!”', opts:[
+      { label:'Byt lösenord genast', effects:{ mental:-2, money:-1000 }, reply:'Du säkrade kontot. Skakigt — men räddat i tid.' },
+      { label:'Strunta i det', effects:{ mental:-5, followersPct:-0.02 }, reply:'Du ignorerade det. Två dagar senare scammade ”du” alla dina fans.' } ]},
+    { id:'gift1', kicker:'🎁 Present', text:'”jag stickade en tröja åt dig ❤️ vart kan jag skicka? behöver bara din hemadress!”', opts:[
+      { label:'Tacka — hänvisa till PO-box', effects:{ mental:3, followersPct:0.006 }, reply:'Du tackade varmt och gav en trygg adress. Snällt och smart.' },
+      { label:'Ge hemadressen', effects:{ mental:-6 }, reply:'Du gav ut adressen. Nu ligger tre paket och en klump i magen.' } ]},
+    { id:'shade1', kicker:'😾 Rival', text:'”gulligt att du fortfarande försöker!! så modigt att posta trots siffrorna 💕”', opts:[
+      { label:'Svara ännu sötare', effects:{ mental:1, publicity:4 }, reply:'Du var så artig att det sved. Passiv aggression, mästarklass.' },
+      { label:'Läs, svara inte', effects:{ mental:-2 }, reply:'Du lät det ligga. Det gnager, men du gav inget.' } ]},
+    { id:'smallcreator1', kicker:'🙏 Liten kreatör', text:'”snälla snälla SNÄLLA en shoutout, jag har 43 följare och en dröm. du skulle rädda mitt liv 😭”', opts:[
+      { label:'Ge en shoutout', effects:{ followersPct:-0.003, mental:5, publicity:3 }, reply:'Du lyfte någon mindre. Kostade inget, betydde allt.' },
+      { label:'Ignorera', effects:{ mental:-2 }, reply:'Du scrollade förbi. Alla kan inte räddas. Ändå gnager det.' } ]},
+    { id:'exposure1', kicker:'💸 ”Exponering”', text:'”Vi kan tyvärr inte betala, men tänk på exponeringen! Perfekt för din portfolio 🙏”', opts:[
+      { label:'Tacka nej med stil', effects:{ mental:3, followersPct:0.004 }, reply:'”Exponering betalar inte hyran.” Sagt snällt men bestämt.' },
+      { label:'Jobba gratis ändå', effects:{ mental:-4, publicity:5 }, reply:'Portfolion växte. Självrespekten gjorde inte det.' } ]},
+    { id:'teacher1', kicker:'👩‍🏫 Från förr', text:'”Hej, din gamla svensklärare här. Vem hade trott det! Jag sa ju att du hade nåt speciellt.”', opts:[
+      { label:'Svara nostalgiskt', effects:{ mental:6 }, reply:'Ni mindes samma klassrum. En oväntat fin stund.' },
+      { label:'Lämna oläst', effects:{ mental:-1 }, reply:'Du orkade inte gräva i det gamla just nu.' } ]},
+    { id:'threat1', kicker:'☠️ Hot', text:'”jag vet vad du gjorde 2019. radera skandal-videon annars gör jag den offentlig.”', opts:[
+      { label:'Koppla in din agent', effects:{ mental:-6, money:-4000 }, reply:'Du tog in proffs. Dyrt och läskigt, men rätt väg.' },
+      { label:'Betala för tystnad', effects:{ money:-15000, mental:-8 }, reply:'Du betalade. Men utpressare kommer alltid tillbaka.' },
+      { label:'Publicera det själv först', risky:true, roll:[
+        { w:5, effects:{ publicity:20, followersPct:0.05, mental:-6 }, reply:'Du ägde din egen skandal. Vapnet i deras hand blev värdelöst.' },
+        { w:5, effects:{ followersPct:-0.12, publicity:16, mental:-12 }, reply:'Du avslöjade dig själv. Modigt — men det gjorde riktigt ont.' } ] } ]},
+    { id:'wholesome1', kicker:'🌸 Bara snällt', text:'”ville bara säga: du verkar vara en snäll människa. inget mer. ha en fin dag 🌸”', opts:[
+      { label:'Svara varmt', effects:{ mental:6 }, reply:'Ett ärligt tack tillbaka. Såna meddelanden är sällsynta.' },
+      { label:'Le och scrolla', effects:{ mental:3 }, reply:'Du log för dig själv. Behövde inte ens svara.' } ]}
   ];
 
   rollDMs(n) {
