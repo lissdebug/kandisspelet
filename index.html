@@ -901,9 +901,6 @@
           </button>
 
           <div style="position:absolute;left:12px;bottom:10px;font:700 10px/1 'Space Grotesk';letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.42);padding:6px 10px;border-radius:99px;z-index:3;">🏠 {{ roomLabel }}</div>
-          <sc-if value="{{ showRoomHint }}" hint-placeholder-val="{{ true }}">
-            <div style="position:absolute;left:50%;bottom:9px;transform:translateX(-50%);font:700 10px/1 'Space Grotesk';letter-spacing:.06em;color:#1a1916;background:#ffe34d;padding:7px 13px;border-radius:99px;z-index:5;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.45);animation:popin .4s ease;">👆 Klicka runt — allt i rummet svarar</div>
-          </sc-if>
 
           <!-- SCEN-OVERLAY (höger) -->
           <sc-if value="{{ isSceneDm }}" hint-placeholder-val="{{ false }}">
