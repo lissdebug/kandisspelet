@@ -2708,12 +2708,12 @@ class Component extends DCLogic {
       if (type === 'achieve') { osc(523,.0,.12,.14); osc(659,.1,.12,.14); osc(784,.2,.22,.18); }
       else if (type === 'fanfare') { osc(523,.0,.1,.12,'triangle'); osc(659,.08,.1,.12,'triangle'); osc(784,.16,.1,.13,'triangle'); osc(1047,.26,.28,.16,'triangle'); osc(784,.32,.12,.1,'triangle'); osc(1047,.42,.35,.18,'triangle'); }
       else if (type === 'viral') { [523,659,784,1047].forEach((f,i) => osc(f,i*.07,.18,.12,'triangle')); }
-      else if (type === 'ban') { osc(80,0,.8,.2,'sawtooth'); osc(60,.1,.9,.18,'sawtooth'); }
-      else if (type === 'drop') { osc(220,0,.15,.18,'square'); osc(110,.1,.25,.2,'square'); }
-      else if (type === 'gameover') { osc(440,0,.2,.2,'sawtooth'); osc(349,.22,.22,.2,'sawtooth'); osc(261,.46,.65,.25,'sawtooth'); osc(130,.55,.8,.18,'sawtooth'); }
+      else if (type === 'ban') { osc(130,0,.5,.11,'sine'); osc(98,.12,.6,.09,'triangle'); }
+      else if (type === 'drop') { osc(320,0,.12,.08,'sine'); osc(200,.09,.18,.07,'sine'); }
+      else if (type === 'gameover') { osc(392,0,.22,.12,'triangle'); osc(311,.24,.24,.12,'triangle'); osc(233,.5,.55,.14,'sine'); osc(175,.6,.7,.1,'sine'); }
       else if (type === 'level') { [392,523,659,784,1047].forEach((f,i) => osc(f,i*.06,.2,.12,'triangle')); }
       else if (type === 'start') { osc(440,0,.08,.1); osc(880,.1,.12,.1); }
-      else if (type === 'click') { osc(600,0,.04,.07,'square'); }
+      else if (type === 'click') { osc(680,0,.05,.045,'sine'); }
       else if (type === 'tap') { osc(900,0,.025,.05,'sine'); }
       else if (type === 'dm') { osc(880,0,.07,.08,'sine'); osc(1245,.08,.14,.10,'sine'); }
     } catch(e) {}
