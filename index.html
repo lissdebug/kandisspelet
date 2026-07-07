@@ -2034,11 +2034,52 @@ class Component extends DCLogic {
         { w:5, effects:{ followersPct:-0.12, publicity:16, mental:-12 }, reply:'Du avslöjade dig själv. Modigt — men det gjorde riktigt ont.' } ] } ]},
     { id:'wholesome1', kicker:'🌸 Bara snällt', text:'”ville bara säga: du verkar vara en snäll människa. inget mer. ha en fin dag 🌸”', opts:[
       { label:'Svara varmt', effects:{ mental:6 }, reply:'Ett ärligt tack tillbaka. Såna meddelanden är sällsynta.' },
-      { label:'Le och scrolla', effects:{ mental:3 }, reply:'Du log för dig själv. Behövde inte ens svara.' } ]}
+      { label:'Le och scrolla', effects:{ mental:3 }, reply:'Du log för dig själv. Behövde inte ens svara.' } ]},
+    { id:'lawyer1', kicker:'⚖️ Jurist', text:'”Detta är ett formellt föreläggande. Ni använder vår klients varumärke utan tillstånd. Svara inom 48h.”', opts:[
+      { label:'Låt din jurist svara', effects:{ money:-6000, mental:-3 }, reply:'Proffs mot proffs. Dyrt — men det tystnade.' },
+      { label:'Ta bort inlägget direkt', effects:{ followersPct:-0.01, mental:-1 }, reply:'Du backade. Tråkigt men billigt.' },
+      { label:'Ignorera hotet', risky:true, roll:[
+        { w:4, effects:{ publicity:6 }, reply:'Bluff. Inget hände. Skönt.' },
+        { w:6, effects:{ money:-12000, mental:-6, publicity:10 }, reply:'De menade allvar. Nu är det en riktig grej.' } ] } ]},
+    { id:'sibling1', kicker:'👧 Syskon', text:'”du är ju typ rik nu?? kan du inte spotta 20k, jag ska bara starta ett företag. familj hjälper familj 🙄”', opts:[
+      { label:'Låna ut pengarna', effects:{ money:-20000, mental:2 }, reply:'Du hjälpte. Får du se dem igen? Oklart.' },
+      { label:'Säg nej vänligt', effects:{ mental:-3 }, reply:'Du satte en gräns. Nästa familjemiddag blir kylig.' } ]},
+    { id:'bot1', kicker:'🤖 Bot', text:'”Grymt innehåll!! 😍😍 kolla in min sida för GRATIS följare 👉 linkinbio.ru”', opts:[
+      { label:'Rapportera & radera', effects:{ mental:1 }, reply:'En bot mindre. De är hydror, men ändå.' },
+      { label:'Klicka på länken', effects:{ mental:-3, followersPct:-0.02 }, reply:'Varför gjorde du det? Nu är kontot lite skumt.' } ]},
+    { id:'fanart1', kicker:'🎨 Fan-art', text:'”jag målade en tavla av dig och grät klart 😭 den hänger över min säng nu. tänkte du borde veta”', opts:[
+      { label:'Dela den & tagga konstnären', effects:{ mental:4, followersPct:0.008, publicity:4 }, reply:'Fansen älskade gesten. Konstnären svävar på moln.' },
+      { label:'Tacka privat', effects:{ mental:3 }, reply:'Ett varmt privat tack. Allt behöver inte bli content.' } ]},
+    { id:'politician1', kicker:'🏛️ Politiker', text:'”Vi vill gärna ha ert stöd inför valet. Er räckvidd bland unga är precis vad kampanjen behöver.”', opts:[
+      { label:'Ställ dig bakom dem', effects:{ money:10000, followersPct:-0.08, publicity:20, mental:-6 }, reply:'Du tog ställning. Halva publiken hyllar, halva rasar.' },
+      { label:'Håll dig neutral', effects:{ mental:3, publicity:-2 }, reply:'”Jag håller politiken privat.” Tryggt — men lite fegt, säger vissa.' } ]},
+    { id:'moonhoax1', kicker:'👁️ Konspiration', text:'”du VET väl att månlandningen var fejk? snälla säg det till dina följare, de lyssnar på dig 🙏”', opts:[
+      { label:'Bemöt med fakta', effects:{ mental:-2, publicity:4, followersPct:-0.01 }, reply:'Du försökte förklara. Vissa vaknade, andra blockade dig.' },
+      { label:'Ignorera helt', effects:{ mental:1 }, reply:'Du lät det ligga. Inte din strid ikväll.' } ]},
+    { id:'expublic1', kicker:'💔 Ex', text:'”om du inte svarar mig lägger jag ut skärmdumparna. du vet vilka. du har till imorgon.”', opts:[
+      { label:'Blockera & spara bevis', effects:{ mental:-5, publicity:2 }, reply:'Du dokumenterade allt och stängde dörren. Skrämmande men rätt.' },
+      { label:'Försök prata ner det', effects:{ mental:-8, money:-3000 }, reply:'Du förhandlade. Det gav dig en natt till av ren ångest.' } ]},
+    { id:'charity2', kicker:'🤲 Välgörenhet', text:'”Vi driver ett härbärge för hemlösa ungdomar. Det skulle betyda världen om du delade vår insamling.”', opts:[
+      { label:'Dela och donera', effects:{ money:-5000, mental:6, followersPct:0.01, publicity:6 }, reply:'Du lyfte en riktig sak. Det kändes rent — och fansen märkte.' },
+      { label:'Dela utan att donera', effects:{ mental:1, publicity:3 }, reply:'Du delade. Bättre än inget — men du vet det själv.' } ]},
+    { id:'ghostfollow1', kicker:'😤 Bekant', text:'”såg att du avföljde mig?? efter ALLT? trodde vi var vänner. wow. bara wow.”', opts:[
+      { label:'Förklara lugnt', effects:{ mental:-2 }, reply:'Du sa att det var en rensning. De köpte det halvt.' },
+      { label:'Följ tillbaka för lugn', effects:{ mental:1, followersPct:0.002 }, reply:'Du gav efter. Enklare så — men gränsen suddades.' } ]},
+    { id:'sponsorlate1', kicker:'📋 Sponsor', text:'”Hej! Vi väntar fortfarande på inlägget som skulle ut i tisdags. Allt ok? Deadline var viktig.”', opts:[
+      { label:'Leverera ikväll', effects:{ money:6000, mental:-6 }, reply:'Du fixade det sent på natten. Relationen räddad, sömnen inte.' },
+      { label:'Be om ursäkt & skjut upp', effects:{ mental:-2 }, reply:'De var förstående — den här gången. Ett streck i protokollet.' } ]},
+    { id:'fakeaccount1', kicker:'🎭 Falskt konto', text:'”hej, nån har gjort ett fejk-konto med ditt namn o ber folk om Swish. tänkte du ville veta 😬”', opts:[
+      { label:'Varna dina följare', effects:{ mental:-2, publicity:6, followersPct:0.004 }, reply:'Du gick ut snabbt. Några hann luras, men de flesta räddades.' },
+      { label:'Anmäl tyst till plattformen', effects:{ mental:-1 }, reply:'Du rapporterade diskret. Tar en vecka. Klockan tickar.' } ]},
+    { id:'peerburnout1', kicker:'🫂 Kollega', text:'”kan jag vara ärlig? jag håller på att gå sönder av det här. hur orkar du? på riktigt.”', opts:[
+      { label:'Var öppen tillbaka', effects:{ mental:5 }, reply:'Ni delade sanningen om branschen. En sällsynt äkta stund.' },
+      { label:'Ge peppande floskler', effects:{ mental:-2 }, reply:'Du svarade ”du fixar det! 💪”. Ni vet båda att det inte räckte.' } ]}
   ];
 
-  rollDMs(n) {
-    const pool = this.shuffle(this.DM_TEMPLATES).slice(0, n);
+  rollDMs(n, existing) {
+    const used = new Set((existing || []).map(d => d.tid));
+    const avail = this.DM_TEMPLATES.filter(t => !used.has(t.id));   // aldrig en dubblett av ett DM som redan ligger i inkorgen
+    const pool = this.shuffle(avail.length ? avail : this.DM_TEMPLATES).slice(0, n);
     const users = this.shuffle(this.USERHANDLES);
     return pool.map((t, i) => ({ uid: 'd' + Date.now() + '_' + i + Math.floor(Math.random() * 999),
       tid: t.id, user: '@' + (users[i % users.length]).trim(),
@@ -2047,7 +2088,7 @@ class Component extends DCLogic {
   topUpDMs(existing) {
     const cur = existing || [];
     if (cur.length >= 5) return cur;
-    return [...cur, ...this.rollDMs(Math.min(2, 5 - cur.length))];
+    return [...cur, ...this.rollDMs(Math.min(2, 5 - cur.length), cur)];
   }
   // pick the next DM "mood" — biased so storms are often chased by silence (dopamine swings)
   nextDmMood(prev) {
@@ -2072,7 +2113,7 @@ class Component extends DCLogic {
     const chance = mood === 'storm' ? 0.5 : 0.02;
     if (Math.random() > chance) return base;
     const n = mood === 'storm' && Math.random() < 0.4 ? 2 : 1;
-    const add = this.rollDMs(Math.min(n, 12 - cur.length));
+    const add = this.rollDMs(Math.min(n, 12 - cur.length), cur);
     if (!add.length) return base;
     this.playSound('dm');
     const newToasts = add.map(dm => {
