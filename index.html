@@ -2676,7 +2676,7 @@ class Component extends DCLogic {
   };
 
   componentDidMount() {
-    try { const raw = localStorage.getItem('beromdhet_save_v1'); if (raw) { const o = JSON.parse(raw); if (o && o.phase) { if (o.phase === 'weekwait') o.phase = 'scenario'; this.setState(o); } } } catch (e) {}
+    try { const raw = localStorage.getItem('beromdhet_save_v1'); if (raw) { const o = JSON.parse(raw); if (o && o.phase) { if (o.phase === 'weekwait') o.phase = 'scenario'; if (Array.isArray(o.dms)) { const valid = new Set(this.DM_TEMPLATES.map(t => t.id)); const seen = new Set(); o.dms = o.dms.filter(d => { if (!d || !valid.has(d.tid) || seen.has(d.tid)) return false; seen.add(d.tid); return true; }); } this.setState(o); } } } catch (e) {}
     try { const pb = localStorage.getItem('beromdhet_pb_v1'); if (pb) this.setState({ personalBest: JSON.parse(pb) }); } catch (e) {}
     try { const mp = localStorage.getItem('beromdhet_music'); if (mp === '0') this.setState({ musicOn: false }); } catch (e) {}
     try { this._ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
