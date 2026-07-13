@@ -838,7 +838,7 @@
             <div style="position:absolute;left:42%;top:-3px;width:54px;height:26px;border-radius:0 0 27px 27px;background:radial-gradient(circle at 50% 0,rgba(255,225,160,.95),rgba(255,205,130,.25) 70%,transparent);box-shadow:0 0 26px rgba(255,215,150,.7);z-index:2;"></div>
           </sc-if>
           <sc-if value="{{ showAward }}" hint-placeholder-val="{{ false }}">
-            <button onclick="{{ onAward }}" title="Priser" style="position:absolute;left:38%;top:16%;width:58px;height:28px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"></button>
+            <button onclick="{{ onAward }}" title="🏆 Dina troféer" style="position:absolute;left:38%;top:16%;width:58px;height:28px;border:none;background:transparent;margin:0;padding:0;cursor:pointer;z-index:5;"><div style="position:absolute;right:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:#ffe34d;box-shadow:0 0 7px #ffe34d;animation:barpulse 1.8s ease-in-out infinite;"></div></button>
             <div style="position:absolute;left:39%;top:18%;display:flex;gap:6px;z-index:2;">
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#ffe9a8,#caa53e);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
               <div style="width:21px;height:21px;border-radius:50%;background:radial-gradient(circle,#e9e9ef,#9a9aa6);box-shadow:0 0 0 2px rgba(0,0,0,.25);"></div>
@@ -887,15 +887,15 @@
           </sc-if>
 
           <!-- KLICKBAR SPEGEL -->
-          <button onclick="{{ onMirror }}" title="Spegeln" style="position:absolute;left:47%;bottom:11%;width:24px;height:80px;border:none;margin:0;padding:0;cursor:pointer;background:transparent;z-index:2;">
+          <button onclick="{{ onMirror }}" title="✨ Öppna lifestyle-butiken" style="position:absolute;left:47%;bottom:11%;width:24px;height:80px;border:none;margin:0;padding:0;cursor:pointer;background:transparent;z-index:2;">
             <div style="position:absolute;left:2px;right:2px;top:0;bottom:6px;border-radius:12px;background:linear-gradient(155deg,rgba(225,238,255,.6),rgba(150,170,200,.2));box-shadow:inset 0 0 6px rgba(255,255,255,.45),0 0 0 3px #6a5f44;"></div>
             <div style="position:absolute;left:42%;top:12%;transform:rotate(20deg);width:5px;height:46%;background:rgba(255,255,255,.45);border-radius:3px;"></div>
             <div style="position:absolute;left:4px;bottom:0;width:16px;height:6px;border-radius:3px;background:#3a3550;"></div>
-            <div style="position:absolute;right:-2px;top:-2px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 6px rgba(255,255,255,.9);animation:flick 2.4s ease-in-out infinite .6s;"></div>
+            <div style="position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:#ffe34d;box-shadow:0 0 7px #ffe34d;animation:barpulse 1.8s ease-in-out infinite;"></div>
           </button>
 
           <!-- KLICKBAR TELEFON -->
-          <button onclick="{{ onPhone }}" title="Telefonen" style="position:absolute;left:19%;bottom:17%;width:16px;height:27px;border:none;margin:0;padding:0;cursor:pointer;background:#0c0c10;border-radius:4px;box-shadow:0 0 11px rgba(120,170,255,.55),0 0 0 1.5px #34323e;z-index:3;">
+          <button onclick="{{ onPhone }}" title="📱 Öppna inboxen" style="position:absolute;left:19%;bottom:17%;width:16px;height:27px;border:none;margin:0;padding:0;cursor:pointer;background:#0c0c10;border-radius:4px;box-shadow:0 0 11px rgba(120,170,255,.55),0 0 0 1.5px #34323e;z-index:3;">
             <div style="position:absolute;inset:2px;border-radius:3px;background:linear-gradient(160deg,#3a6aff,#8a5cff);"></div>
             <div style="position:absolute;right:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:#3ddc84;box-shadow:0 0 6px #3ddc84;animation:flick 2.4s ease-in-out infinite 1.2s;"></div>
           </button>
@@ -1119,6 +1119,18 @@
     </sc-if>
 
     <!-- ============ MILSTOLPE ============ -->
+    <!-- ============ STARTUP-STORY (efter drömval) ============ -->
+    <sc-if value="{{ isStory }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Story" style="padding:14px;">
+        <div style="position:relative;overflow:hidden;border-radius:8px;padding:60px 44px 56px;text-align:center;background:#0b0712;background-image:radial-gradient(120% 80% at 50% -10%,rgba(255,54,176,.35),transparent 55%),radial-gradient(100% 80% at 90% 20%,rgba(70,210,255,.28),transparent 50%);font-family:'Space Grotesk',sans-serif;">
+          <div style="font:700 11px/1 'Space Grotesk';letter-spacing:.26em;text-transform:uppercase;color:#7ee0ff;text-shadow:0 0 14px rgba(70,210,255,.7);margin-bottom:18px;">En stjärna föds</div>
+          <h1 style="font:400 56px/.9 'Anton';text-transform:uppercase;margin:0 0 24px;background:linear-gradient(90deg,#ffd86b,#ff36b0,#46d2ff,#ffd86b);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite;">Kapitel 1</h1>
+          <p style="font:400 20px/1.65 'Space Grotesk';color:#e9e2f5;max-width:560px;margin:0 auto 34px;">{{ storyText }}</p>
+          <button onclick="{{ onBeginStory }}" style="cursor:pointer;border:1px solid #ff36b0;background:rgba(255,54,176,.12);color:#fff;font:600 16px/1 'Space Grotesk';letter-spacing:.06em;text-transform:uppercase;padding:16px 36px;border-radius:99px;" style-hover="background:rgba(255,54,176,.24);">Börja resan →</button>
+        </div>
+      </div>
+    </sc-if>
+
     <sc-if value="{{ isMilestone }}" hint-placeholder-val="{{ false }}">
       <div data-screen-label="Milstolpe" style="padding:14px;">
         <div style="position:relative;overflow:hidden;border-radius:8px;padding:54px 38px 50px;text-align:center;background:#0b0712;background-image:radial-gradient(120% 80% at 50% -10%,rgba(255,54,176,.4),transparent 55%),radial-gradient(100% 80% at 90% 20%,rgba(70,210,255,.3),transparent 50%);font-family:'Space Grotesk',sans-serif;">
@@ -1126,7 +1138,8 @@
           <div style="font:700 12px/1 'Space Grotesk';letter-spacing:.2em;text-transform:uppercase;color:#ff8ad0;margin-bottom:12px;">Det officiella numret</div>
           <h1 style="font:400 60px/.88 'Anton';text-transform:uppercase;margin:0 0 14px;background:linear-gradient(90deg,#ffd86b,#ff36b0,#46d2ff,#ffd86b);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite;">Vem är {{ msName }}?</h1>
           <p style="font:600 18px/1.3 'Space Grotesk';color:#fff;margin:0 0 6px;">Du är nu <b style="color:#ffd86b;">{{ msStatus }}</b></p>
-          <p style="font:500 13px/1.4 'Space Grotesk';color:#b9b0c8;margin:0 0 30px;">{{ msHandle }} · {{ msFollowers }} följare och stigande</p>
+          <p style="font:500 13px/1.4 'Space Grotesk';color:#b9b0c8;margin:0 0 20px;">{{ msHandle }} · {{ msFollowers }} följare och stigande</p>
+          <p style="font:400 17px/1.6 'Space Grotesk';color:#e9e2f5;max-width:520px;margin:0 auto 30px;font-style:italic;">{{ msStory }}</p>
           <button onclick="{{ onContinue }}" style="cursor:pointer;border:1px solid #ff36b0;background:rgba(255,54,176,.12);color:#fff;font:600 15px/1 'Space Grotesk';letter-spacing:.06em;text-transform:uppercase;padding:15px 32px;border-radius:99px;" style-hover="background:rgba(255,54,176,.24);">Fortsätt karriären →</button>
         </div>
       </div>
@@ -1173,6 +1186,8 @@
             <div style="margin-bottom:14px;"><button onclick="{{ onJob }}" style="cursor:pointer;border:none;background:#ffe34d;color:#0e0c0a;font:400 23px/1 'Anton';letter-spacing:.04em;text-transform:uppercase;padding:18px 34px;border-radius:3px;" style-hover="background:#fff07a;">💼 Ta ett vanligt jobb — vänta ut 10v (48h)</button><div style="font:500 15px/1.5 'Archivo';color:#7a756c;margin-top:10px;max-width:460px;margin-left:auto;margin-right:auto;">Följare och publicitet rasar till botten, men pengarna jobbas upp till 10 000 kr igen.</div></div>
           </sc-if>
           <button onclick="{{ onRestart }}" style="cursor:pointer;border:none;background:#d4112a;color:#fff;font:400 26px/1 'Anton';letter-spacing:.04em;text-transform:uppercase;padding:18px 38px;border-radius:3px;" style-hover="background:#e81834;">Spela igen</button>
+          <div style="margin-top:16px;"><button onclick="{{ onShare }}" style="cursor:pointer;border:1px solid #8a8377;background:transparent;color:#cfcabf;font:600 16px/1 'Archivo';letter-spacing:.06em;text-transform:uppercase;padding:14px 28px;border-radius:3px;" style-hover="background:#1a1916;">📋 Dela resultat</button></div>
+          <div style="font:600 14px/1.4 'Archivo';color:#7ee0c0;margin-top:12px;min-height:18px;">{{ shareFeedback }}</div>
         </div>
       </div>
     </sc-if>
@@ -1194,6 +1209,8 @@
             <div style="font:400 22px/1 'Anton';text-transform:uppercase;color:#ffd86b;letter-spacing:.04em;">{{ overVerdict }}</div>
           </div>
           <button onclick="{{ onRestart }}" style="cursor:pointer;border:1px solid #ffc24b;background:rgba(255,194,75,.1);color:#ffc24b;font:600 19px/1 'Space Grotesk';letter-spacing:.06em;text-transform:uppercase;padding:18px 38px;border-radius:99px;" style-hover="background:rgba(255,194,75,.2);">Börja om från noll</button>
+          <div style="margin-top:16px;"><button onclick="{{ onShare }}" style="cursor:pointer;border:1px solid #b9b0c8;background:transparent;color:#cdc3dd;font:600 16px/1 'Space Grotesk';letter-spacing:.06em;text-transform:uppercase;padding:14px 28px;border-radius:99px;" style-hover="background:rgba(255,255,255,.08);">📋 Dela resultat</button></div>
+          <div style="font:600 14px/1.4 'Space Grotesk';color:#7ee0c0;margin-top:12px;min-height:18px;">{{ shareFeedback }}</div>
         </div>
       </div>
     </sc-if>
@@ -1699,10 +1716,58 @@ class Component extends DCLogic {
     s_meme: { kicker: 'Viralt', headline: 'En pinsam bild på dig har blivit ett världsmeme', body: 'Ditt ansikte, fruset i ett olyckligt ögonblick, finns nu överallt. Miljoner skrattar. Med dig eller åt dig — det avgör du.', choices: [
       { label: 'Omfamna memet och sälj merch på det', effects: { money: 11000, followersPct: 0.12, publicity: 24, mental: 4 }, result: { kicker: 'Geni', headline: 'Liza tjänar pengar på sitt eget meme', sub: 'Du satte ansiktet på en tröja innan någon annan hann. Att skratta åt sig själv blev guld värt.' } },
       { label: 'Försök få det borttaget', effects: { followersPct: -0.06, publicity: 16, mental: -10 }, result: { kicker: 'Omöjligt', headline: 'Liza i krig mot internet', sub: 'Du kan inte radera ett meme. Försöket gjorde det bara större — Streisand slår till igen.' } }
+    ]},
+    s_ozempic: { kicker: 'Hälsa', headline: 'Ett läkemedelsbolag vill att du säljer ”mirakelsprutan”', body: 'Summan är absurd. Sprutan är omtvistad. Ditt flöde är fullt av unga som hänger på varje ord du säger.', choices: [
+      { label: 'Ta dealen — pengarna är sjuka', effects: { money: 40000, publicity: 22, followersPct: -0.04, mental: -8 }, result: { kicker: 'Sponsrat', headline: 'Liza injicerar ”before/after”', sub: 'Kontot svämmar över. Så gör kritiken — läkare, föräldrar, före detta fans.' } },
+      { label: 'Tacka nej och prata om kroppspress', effects: { money: -3000, followersPct: 0.06, publicity: 8, mental: 6 }, result: { kicker: 'Ryggrad', headline: 'Liza säger nej till sprutan', sub: 'Du valde bort en förmögenhet. Kommentarsfältet gråter tacksamhetstårar.' } }
+    ]},
+    s_cryostream: { kicker: 'Äkta?', headline: 'Du började gråta live — tittarna strömmar in', body: 'Det bara kom. Nu står siffran och tickar uppåt medan du snörvlar. En del av dig noterar det.', choices: [
+      { label: 'Låt kameran rulla, var helt sårbar', risky: true, roll: [
+        { w: 5, vibe: 'love', effects: { followersPct: 0.1, publicity: 18, mental: -4 }, result: { kicker: 'Nära', headline: 'Lizas tårar rör en hel nation', sub: 'Klippet delas i miljoner. ”Äntligen någon äkta”, skriver de.' } },
+        { w: 5, effects: { followersPct: -0.03, publicity: 14, mental: -12 }, result: { kicker: 'Cyniskt', headline: '”Content-gråt”, dömer nätet', sub: 'Halva flödet misstänker att tårarna var planerade. Det gör ont — på riktigt den här gången.' } }
+      ] },
+      { label: 'Stäng av och samla dig i tystnad', effects: { followersPct: -0.02, publicity: -2, mental: 8 }, result: { kicker: 'Privat', headline: 'Liza drar sig undan', sub: 'Ingen fick se resten. Du sov faktiskt gott för första gången på veckor.' } }
+    ]},
+    s_deadhoax: { type: 'event', kicker: 'Rykte', headline: 'Ett rykte om att du har dött sprider sig', body: 'RIP-inläggen trendar. Folk sörjer någon som sitter och läser sina egna dödsrunor med kaffe i handen.', choices: [
+      { label: 'Gör ett dramatiskt ”jag lever”-inlägg', effects: { followersPct: 0.09, publicity: 28, mental: -6 }, result: { kicker: 'Uppståndelse', headline: 'Liza ”återföds” i direktsändning', sub: 'Lättnad, skratt och en och annan besviken som redan hunnit skriva en fin dödsruna.' } },
+      { label: 'Ignorera — det dör ut av sig självt', effects: { publicity: -6, followersPct: -0.02, mental: 2 }, result: { kicker: 'Stillhet', headline: 'Liza tiger ihjäl ryktet', sub: 'Utan bränsle slocknar det på ett dygn. Vissa tyckte tystnaden var ”kuslig”.' } }
+    ]},
+    s_greentrip: { kicker: 'Sponsrat', headline: 'Gratis lyxresa — mot att du kallar hotellet ”hållbart”', body: 'Privatjet till en ö. Enda kravet: säg ordet ”hållbart” tre gånger och tagga sponsorn.', choices: [
+      { label: 'Åk och posta paradisbilder', effects: { money: 15000, followersPct: 0.05, publicity: 10, mental: 2 }, result: { kicker: 'Palmer', headline: 'Liza ”upptäcker” hållbar lyx', sub: 'Bilderna är magiska. Ingen nämner privatjetet som flög dit dem.' } },
+      { label: 'Åk dit — och avslöja greenwashingen', risky: true, roll: [
+        { w: 6, effects: { followersPct: 0.08, publicity: 22, mental: 4, money: -2000 }, result: { kicker: 'Sanning', headline: 'Liza sågar greenwashing-resan', sub: 'Du bet handen som matade dig. Fansen jublar, PR-branschen bleknar.' } },
+        { w: 4, effects: { followersPct: -0.05, publicity: 16, mental: -8 }, result: { kicker: 'Motvind', headline: 'Branschen fryser ut Liza', sub: 'Sanningen var dyr. Sponsorerna ringer inte längre — ett tag.' } }
+      ] }
+    ]},
+    s_oldpost: { kicker: 'Krisläge', headline: 'Ett tio år gammalt inlägg har grävts fram', body: 'Du var sjutton och dum. Internet glömmer aldrig, och just nu minns det extra högt.', choices: [
+      { label: 'Be om ursäkt genomtänkt', effects: { followersPct: -0.03, publicity: 12, mental: -4 }, result: { kicker: 'Ånger', headline: 'Liza äger sitt gamla jag', sub: 'En mogen ursäkt. De flesta nickar; några skärmdumpar den ”för säkerhets skull”.' } },
+      { label: 'Hävda att kontot var hackat', risky: true, roll: [
+        { w: 4, effects: { publicity: 10, followersPct: -0.02, mental: -2 }, result: { kicker: 'Undanflykt', headline: '”Det var inte jag”, säger Liza', sub: 'Hälften köper det. Andra hälften sparar ännu fler skärmdumpar.' } },
+        { w: 6, effects: { followersPct: -0.1, publicity: 20, mental: -12 }, result: { kicker: 'Avslöjad', headline: 'Lizas ”hackad”-story spricker', sub: 'En detektiv-fan hittade tidsstämpeln. Lögnen blev värre än inlägget.' } }
+      ] }
+    ]},
+    s_babyreveal: { kicker: 'Privatliv', headline: 'Ett magasin vill betala för din gravidbild — först av alla', body: 'Ett skandalöst erbjudande för en av livets mest privata stunder. Eller ditt smartaste karriärdrag?', choices: [
+      { label: 'Sälj den exklusivt', effects: { money: 30000, publicity: 18, followersPct: 0.03, mental: -8 }, result: { kicker: 'Exklusivt', headline: 'Liza säljer första bilden', sub: 'Rekordupplaga. Och en märklig känsla av att ha prislappat något oprisbart.' } },
+      { label: 'Håll det heligt och helt privat', effects: { money: -1000, mental: 10, followersPct: 0.02, publicity: -4 }, result: { kicker: 'Gräns', headline: 'Liza drar en linje', sub: '”Vissa saker är inte content.” Tystnaden kändes rikare än checken.' } }
+    ]},
+    s_leakdm: { kicker: 'Läcka', headline: 'Ett privat meddelande från dig har läckt', body: 'Skärmdumpen sprider sig. Orden är dina — sagda i förtroende, nu lästa av miljoner. Klockan tickar.', choices: [
+      { label: 'Förneka blankt att det är du', next: 's_leakdm_deny', effects: { publicity: 14, followersPct: -0.03, mental: -6 }, result: { kicker: 'Förnekelse', headline: 'Liza: ”Det där är fejk”', sub: 'Du sa det med stadig röst. Internet laddar redan upp bevisen.' } },
+      { label: 'Erkänn och be om ursäkt direkt', effects: { followersPct: -0.05, publicity: 8, mental: -2 }, result: { kicker: 'Ärlighet', headline: 'Liza äger sitt misstag', sub: 'Ett rakt sorry. Det svider, men stormen får inget att bita i.' } }
+    ]},
+    s_leakdm_deny: { kicker: 'Eskalering', headline: 'Din förnekelse motbevisades — av en tidsstämpel', body: 'En fan-detektiv matchade metadatan. Lögnen är nu större nyhet än läckan själv.', choices: [
+      { label: 'Skyll på en ”hackad praktikant”', next: 's_leakdm_intern', effects: { publicity: 18, followersPct: -0.06, mental: -8 }, result: { kicker: 'Syndabock', headline: 'Liza pekar på praktikanten', sub: 'En osynlig praktikant får skulden. Praktikanten, visar det sig, är inte så osynlig.' } },
+      { label: 'Kom med ett tårfyllt totalerkännande', effects: { followersPct: 0.02, publicity: 22, mental: -10 }, result: { kicker: 'Botgöring', headline: 'Liza brister ut i erkännande', sub: 'Du la alla korten på bordet. Vissa förlät på fläcken — genuint ånger säljer.' } }
+    ]},
+    s_leakdm_intern: { kicker: 'Final', headline: 'Praktikanten gick ut med sin egen version', body: 'Hen har skärmdumpar, kvitton och en TikTok med bra ljus. Publiken älskar en underdog.', choices: [
+      { label: 'Köp deras tystnad, tyst och dyrt', effects: { money: -25000, publicity: -8, followersPct: -0.04, mental: -6 }, result: { kicker: 'Uppgörelse', headline: 'Allt tystnar — plötsligt', sub: 'Pengar löste det. Din revisor gråter, ditt samvete med.' } },
+      { label: 'Låt det bero och hoppas det blåser över', risky: true, roll: [
+        { w: 5, effects: { followersPct: 0.05, publicity: 16, mental: 2 }, result: { kicker: 'Tur', headline: 'En större skandal stjäl rubrikerna', sub: 'Någon annan gjorde något värre samma kväll. Du glöms bort — räddad av kaoset.' } },
+        { w: 5, effects: { followersPct: -0.12, publicity: 20, mental: -12 }, result: { kicker: 'Kollaps', headline: 'Praktikant-gate sänker Liza', sub: 'Det blåste inte över. Det blev en dokumentär. Du är ”del två”.' } }
+      ] }
     ]}
   };
 
-  baseIds() { return ['s_fast','s_rage','s_cancel','s_partner','s_network','s_gala','s_crypto','s_bots','s_break','s_charity','s_drama','s_dubai','s_fandm','s_detox','s_ai','s_leak','s_merch','s_podcast','s_collab','s_throwback','s_paparazzi','s_gambling','s_surgery','s_pet','s_reunion','s_doc','s_challenge','s_book','s_flex','s_award','s_oldfriend','s_tax','s_stalker','s_sibling','s_relapse','s_political','s_dropship','s_deepfake','s_burner','s_subscription','s_festival','s_ghosting','s_authenticity','s_intervention','s_kidbrand','s_comeback','s_wedding','s_nft','s_ghostcaught','s_exclusive','s_stolen','s_agelie','s_filter','s_charitystream','s_breakup','s_mgmt','s_trademark','s_fakegiveaway','s_oldboss','s_aiart','s_clone','s_reality','s_rerun','s_endorse','s_skincare','s_fanart','s_newgen','s_streamfail','s_healthadvice','s_aicompanion','s_dox','s_school','s_lawsuit','s_meme','s_hotmic','s_algochange','s_disstrack','s_paywall','s_boycott','s_haul','s_greenscreen','s_therapytrauma','s_conspiracy','s_ghostcaptions','s_fanmeet','s_deadline']; }
+  baseIds() { return ['s_fast','s_rage','s_cancel','s_partner','s_network','s_gala','s_crypto','s_bots','s_break','s_charity','s_drama','s_dubai','s_fandm','s_detox','s_ai','s_leak','s_merch','s_podcast','s_collab','s_throwback','s_paparazzi','s_gambling','s_surgery','s_pet','s_reunion','s_doc','s_challenge','s_book','s_flex','s_award','s_oldfriend','s_tax','s_stalker','s_sibling','s_relapse','s_political','s_dropship','s_deepfake','s_burner','s_subscription','s_festival','s_ghosting','s_authenticity','s_intervention','s_kidbrand','s_comeback','s_wedding','s_nft','s_ghostcaught','s_exclusive','s_stolen','s_agelie','s_filter','s_charitystream','s_breakup','s_mgmt','s_trademark','s_fakegiveaway','s_oldboss','s_aiart','s_clone','s_reality','s_rerun','s_endorse','s_skincare','s_fanart','s_newgen','s_streamfail','s_healthadvice','s_aicompanion','s_dox','s_school','s_lawsuit','s_meme','s_hotmic','s_algochange','s_disstrack','s_paywall','s_boycott','s_haul','s_greenscreen','s_therapytrauma','s_conspiracy','s_ghostcaptions','s_fanmeet','s_deadline','s_ozempic','s_cryostream','s_deadhoax','s_greentrip','s_oldpost','s_babyreveal','s_leakdm']; }
 
   diff() {
     const d = this.props.difficulty ?? 'Normal';
@@ -1759,6 +1824,9 @@ class Component extends DCLogic {
     if (s.mental <= 0 && f >= 100000) return { tag: 'Tragisk komet', line: 'Lyste skarpast precis innan allt slocknade. Folk minns ljuset, inte fallet.' };
     if (reason === 'burnout') return { tag: 'Utbränd talang', line: 'Hade allt utom en paus. Branschen tog vad den kunde och gick vidare.' };
     if (reason === 'broke') return { tag: 'Lånad lyx', line: 'Allt var äkta utom ekonomin. Ridån föll när fakturorna kom.' };
+    if (s.money >= 500000 && s.mental <= 25) return { tag: 'Utsåld', line: 'Du växlade in själen mot siffror. Kontot är fullt, blicken tom.' };
+    if (f >= 500000 && s.mental >= 70) return { tag: 'Balanserad ikon', line: 'Du behöll dig själv hela vägen upp. Sällsynt — nästan misstänkt sunt.' };
+    if (f < 20000 && s.mental >= 70) return { tag: 'Indie-själ', line: 'Aldrig störst, aldrig såld. En liten trogen skara och en ren nattsömn.' };
     if (f < 5000) return { tag: 'Engångsfenomen', line: 'En vecka av uppmärksamhet, sen tystnad. De flesta hann aldrig lära sig namnet.' };
     if (f >= 100000) return { tag: 'Folkkär men glömd', line: 'Många älskade dig. Algoritmen gjorde det inte. Sånt är spelet.' };
     return { tag: 'Kultförklarad', line: 'Aldrig störst, men de som var med minns. En riktig nisch-legend.' };
@@ -1826,6 +1894,10 @@ class Component extends DCLogic {
     { id:'comeback',      headline:'COMEBACK KID',           sub:'Reste dig från botten när alla redan skrivit dig.' },
     { id:'glass_cannon',  headline:'TOM IKON',               sub:'En miljon följare, nästan inget kvar i tanken.' },
     { id:'brutal_win',    headline:'BRUTAL — KLARAT',        sub:'Inga genvägar, ingen nåd. Du blev ikon ändå.' },
+    { id:'sellout',       headline:'SELL-OUT',               sub:'200 000 på kontot, nästan inget kvar i själen. Värt det?' },
+    { id:'indie',         headline:'INDIE-LEGENDEN',         sub:'Liten trogen skara — och förståndet i behåll. Du valde det själv.' },
+    { id:'iron_mind',     headline:'STÅLNERVER',             sub:'15 veckor i karusellen utan att tappa lugnet. Hur?' },
+    { id:'maxpub',        headline:'ALLAS FLÖDE',            sub:'Du trendar överallt samtidigt. Omöjlig att missa.' },
   ];
 
   checkAchievements(s, extraIds = []) {
@@ -1847,6 +1919,10 @@ class Component extends DCLogic {
     if (!have.has('paranoid') && (s.suspicion || 0) >= 80) unlock.push('paranoid');
     if (!have.has('refusenik') && (s.refusals || 0) >= 3) unlock.push('refusenik');
     if (!have.has('comeback') && s.hitRockBottom && s.mental >= 60) unlock.push('comeback');
+    if (!have.has('sellout') && s.money >= 200000 && s.mental <= 30) unlock.push('sellout');
+    if (!have.has('indie') && s.week >= 15 && (s.peakFollowers || s.followers) < 20000 && s.mental >= 70) unlock.push('indie');
+    if (!have.has('iron_mind') && s.week >= 15 && s.mental >= 85) unlock.push('iron_mind');
+    if (!have.has('maxpub') && (s.publicity || 0) >= 100) unlock.push('maxpub');
     const newOnes = unlock.filter(id => !have.has(id));
     if (!newOnes.length) return {};
     const def = this.ACHIEVEMENTS.find(a => a.id === newOnes[0]);
@@ -1872,6 +1948,65 @@ class Component extends DCLogic {
     { id:'dancer',     emoji:'💃', label:'Dansare / koreograf',       sub:'Kroppen är instrumentet. Scenen väntar.',   startMental: 6, startFollowers: 150 },
     { id:'famous',     emoji:'🌟', label:'Bara… bli sedd.',          sub:'Det räcker. Det är nog. Det vet du.',       startFollowers: 100 },
   ];
+
+  // --- berättelsen: startup-story per dröm (flera varianter = varierar per omgång) ---
+  STORY_INTRO = {
+    singer: [
+      'Din röst har alltid varit för stor för ditt sovrum. Ikväll lägger du upp den första inspelningen — hjärtat bankar, fingret svävar över ”publicera”. {name}, det finns ingen väg tillbaka.',
+      'Ett år av karaoke-kvällar och refränger som studsat i huvudet. Nu trycker du på inspela. Antingen hör världen dig — eller så gör den det inte. {name} tar chansen ändå.'
+    ],
+    influencer: [
+      'Perfekt ljus, ärlig bildtext, ett löfte om ett ”bättre liv”. {name}, du vet att det är halvt på låtsas — men om folk mår bra, spelar det roll? Första inlägget går live.',
+      'Du har följt alla andra i åratal. Idag vänder du på kameran. En livsstil ska säljas, och den är din. Klick — och {name} är plötsligt en avsändare.'
+    ],
+    comedian: [
+      'Du har alltid varit den roliga. Frågan är om internet håller med. Första klippet: ett skämt, uselt ljus, äkta skratt. {name} trycker upp det.',
+      'Timing är allt, sa du jämt. Nu är timingen: noll följare, ett skämt, en knapp. Publicera. Antingen skrattar de — eller så gör de inte det.'
+    ],
+    activist: [
+      'Du har en sak att säga och tystnaden har blivit outhärdlig. Första inlägget är inte snyggt — det är sant. {name} vet att sanning kostar följare. Skickar ändå.',
+      'Ingen bad dig om det här. Det är precis därför du gör det. En röst, ett budskap, en publik du ännu inte har. Resan börjar med ett skri.'
+    ],
+    unknown: [
+      '{name}, du vet inte riktigt vad du vill bli känd för. Men något drog i dig ikväll. Du postar en slumpmässig grej och ser vad algoritmen tycker.',
+      'Ingen plan, ingen nisch, bara ett ”varför inte”. Du trycker publicera på något du inte ens är säker på. Så börjar det, ibland.'
+    ],
+    dancer: [
+      'Kroppen kan saker som orden inte kan. Du filmar en rutin i vardagsrummet, flyttar soffan, tar tre tagningar. {name} lägger upp den bästa.',
+      'Golvet är ditt. Kameran fångar bara hälften — men hälften räcker för att börja. En rutin, en post, ett andetag. Kör.'
+    ],
+    famous: [
+      '{name}, du behöver inte ens en anledning. Att bli sedd räcker. Du postar dig själv — bara dig — och väntar på att någon ska titta.',
+      'Inte för musiken, inte för budskapet. Bara för att synas. Det är ärligare än de flesta erkänner. Första inlägget: här är jag.'
+    ]
+  };
+
+  // berättelse-beat vid varje ny nivå (idx 1–4), personaliseras + slumpas
+  LEVEL_BEATS = {
+    1: [
+      'De första tusen. {name}, någonstans sitter tusen främlingar och har valt att se just dig. Overkligt — och lite beroendeframkallande.',
+      'En av dina grejer studsade. Inte viralt, men tillräckligt. Notiserna kom tätare och du log åt telefonen. Så här börjar det.',
+      'Din mamma är inte längre din enda följare. {name} har en liten publik nu — och en aning om att det här faktiskt kan bli något.'
+    ],
+    2: [
+      'Tio tusen. Grannen googlade dig. Ett litet märke skickade en gratisprodukt ”bara för att”. {name}, du är inte anonym längre.',
+      'Någon kände igen dig på ICA. Bara ett ”är det du?”, men det satte sig. Ryktet börjar leva sitt eget liv.',
+      'Kommentarsfälten blir längre än du hinner läsa. {name} inser att publiken har åsikter om ditt liv — inte bara ditt innehåll.'
+    ],
+    3: [
+      'Femtio tusen. Märkena ringer på eget initiativ, och siffran på kontraktet får dig att skratta högt. {name}, det här är ett jobb nu.',
+      'En rival nämnde dig i en video. Du är stor nog att avundas — en märklig komplimang som känns som ett hot.',
+      '{name}, publiken väntar på nästa post. Trycket är nytt: de förväntar sig dig. Att vara tyst är inte längre ett alternativ.'
+    ],
+    4: [
+      'En kvarts miljon. Paparazzi står utanför, oinbjudna. {name}, ditt namn är större än du nu — det lever i löpsedlar du aldrig godkänt.',
+      'Du blev igenkänd genom bilrutan. Ett magasin vill ha en intervju. ”Kändis” — ordet passar, och det skrämmer dig lite.',
+      '{name}, främlingar känner ”dig” — en version de byggt själva. Du är berömd nu. Frågan är om personen och personan är samma längre.'
+    ]
+  };
+
+  fillStory(t) { const s = this.state; return (t || '').split('{name}').join(s.name || 'Du').split('{dream}').join((s.dreamLabel || 'känd').toLowerCase()); }
+  pickStory(arr) { return (arr && arr.length) ? arr[Math.floor(Math.random() * arr.length)] : ''; }
 
   SARA_MSGS = {
     s_fast:    ['Det här märket är lite... ökänt. Pengar är pengar, men tänk på imagen.', 'FastFashion? Seriöst? Jag hoppas du vet vad du gör.', 'Jag svarar inte på det här samtalet förrän du bestämt dig.'],
@@ -2463,7 +2598,9 @@ class Component extends DCLogic {
     let publicity = 12 + (dream.startPublicity || 0);
     const diff = this.diff ? this.diff() : { factor: 80, thr: 25, decay: 6, drift: 600, rec: 4 };
     this.playSound('start');
-    this.setState({ phase: 'scenario', dream: id, dreamLabel: dream.label,
+    const introPool = (this.STORY_INTRO[id] || this.STORY_INTRO.unknown);
+    const storyText = (this.pickStory(introPool) || '').split('{name}').join(this.state.name || 'Du');
+    this.setState({ phase: 'story', storyText, dream: id, dreamLabel: dream.label,
       followers, money, mental: Math.min(100, mental), publicity,
       week: 1, currentId: p.id, deck: p.deck, forcedNext: null,
       lastResult: null, lastDeltas: [], pendingOver: null, weeklyNote: '',
@@ -2477,6 +2614,8 @@ class Component extends DCLogic {
       dream: '', dreamLabel: '', difficulty: this.state.difficulty || 'Normal',
       weekStartFollowers: followers, weekStartMoney: money, weekStartMental: Math.min(100, mental) });
   };
+
+  onBeginStory = () => { this.playSound('start'); this.setState({ phase: 'scenario', idleSecs: 0 }); };
 
   onNameInput = (e) => { this.setState({ pendingName: e.target.value }); };
 
@@ -2567,6 +2706,7 @@ class Component extends DCLogic {
       if (newIdx > s.statusSeen && newIdx > 0 && newIdx < 5) {
         this.playSound('fanfare');
         this.setState({ phase: 'milestone', statusSeen: newIdx, msStatus: this.statusOf(s.followers),
+          msStory: this.fillStory(this.pickStory(this.LEVEL_BEATS[newIdx])),
           pendingScenario: { id: s.currentId, deck: s.deck, forced: restoredForced },
           isQueueResult: false, savedForcedNext: null }); return;
       }
@@ -2622,7 +2762,7 @@ class Component extends DCLogic {
     if (newIdx > s.statusSeen && newIdx > 0 && newIdx < 5) {
       this.playSound('fanfare');
       this.setState({ followers: F, publicity: P, money: M, mental: H, week: s.week + 1, phase: 'milestone',
-        statusSeen: newIdx, msStatus: this.statusOf(F), peakFollowers: peak, hitRockBottom: s.hitRockBottom || H <= 20,
+        statusSeen: newIdx, msStatus: this.statusOf(F), msStory: this.fillStory(this.pickStory(this.LEVEL_BEATS[newIdx])), peakFollowers: peak, hitRockBottom: s.hitRockBottom || H <= 20,
         pendingScenario: { id: p.id, deck: p.deck, forced: p.forced }, weeklyNote: note + staffNote, gameDay: nextDay, gameHour: 8 });
       return;
     }
@@ -2673,6 +2813,34 @@ class Component extends DCLogic {
       dream: '', dreamLabel: '', difficulty: this.state.difficulty || 'Normal', refusals: 0,
       name: '', handle: '', pendingName: '', dms: [], dmFeedback: '', dmMood: 'normal', dmMoodTicks: 0, dmOpen: null, toasts: [], hitRockBottom: false,
       weekStartFollowers: 850, weekStartMoney: 5000, weekStartMental: 80 });
+  };
+
+  onShare = () => {
+    const s = this.state;
+    const vd = this.verdictFor(s, s.overReason);
+    const text = [
+      '🌟 KÄNDIS-LIV 🌟',
+      'Eftermäle: ' + vd.tag,
+      '👥 ' + this.fmtF(s.followers) + ' följare (topp ' + this.fmtF(s.peakFollowers || s.followers) + ')',
+      '💰 ' + this.fmtMoney(s.money) + '  ·  📅 Vecka ' + s.week,
+      '🏆 ' + (s.achievements || []).length + ' achievements  ·  ' + (s.difficulty || 'Normal'),
+      'Kan du bli mer känd? 👀'
+    ].join('\n');
+    const done = () => { this.setState({ shareFeedback: '✓ Resultatet är kopierat — klistra in var du vill!' }); setTimeout(() => this.setState({ shareFeedback: '' }), 4000); };
+    try {
+      if (navigator.share) { navigator.share({ title: 'Kändis-Liv', text }).then(done).catch(() => {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(() => this.fallbackCopy(text, done)); return; }
+      this.fallbackCopy(text, done);
+    } catch (e) { this.fallbackCopy(text, done); }
+  };
+
+  fallbackCopy = (text, done) => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      done();
+    } catch (e) { this.setState({ shareFeedback: 'Kunde inte kopiera automatiskt 😅' }); setTimeout(() => this.setState({ shareFeedback: '' }), 4000); }
   };
 
   componentDidMount() {
@@ -2869,7 +3037,7 @@ class Component extends DCLogic {
       this._emojiTimer = setTimeout(() => this._parseEmoji(), 150);
     }
     try {
-      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: (s.phase === 'weekwait' || s.phase === 'inbox' || s.phase === 'shop' || s.phase === 'lifestyle' || s.phase === 'team' || s.phase === 'trophies') ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks, roomHinted: s.roomHinted }));
+      localStorage.setItem('beromdhet_save_v1', JSON.stringify({ phase: (s.phase === 'weekwait' || s.phase === 'inbox' || s.phase === 'shop' || s.phase === 'lifestyle' || s.phase === 'team' || s.phase === 'trophies' || s.phase === 'story') ? 'scenario' : s.phase, followers: s.followers, publicity: s.publicity, money: s.money, mental: s.mental, week: s.week, currentId: s.currentId, deck: s.deck, forcedNext: s.forcedNext, lastResult: s.lastResult, lastDeltas: s.lastDeltas, pendingOver: s.pendingOver, overReason: s.overReason, weeklyNote: s.weeklyNote, name: s.name, handle: s.handle, statusSeen: s.statusSeen, peakFollowers: s.peakFollowers, comments: s.comments, msStatus: s.msStatus, pendingScenario: s.pendingScenario, idleSecs: s.idleSecs, waitSecs: s.waitSecs, waitDuration: s.waitDuration, waitResult: s.waitResult, liveViews: s.liveViews, gameHour: s.gameHour, gameDay: s.gameDay, pendingVideos: s.pendingVideos, resultQueue: s.resultQueue, isQueueResult: s.isQueueResult, suspicion: s.suspicion, shadowbanWeeks: s.shadowbanWeeks, shadowUntil: s.shadowUntil, shadowFloor: s.shadowFloor, shadowKind: s.shadowKind, owned: s.owned, contentQuality: s.contentQuality, lifestyleCategory: s.lifestyleCategory, staff: s.staff, achievements: s.achievements, saraMsg: s.saraMsg, dream: s.dream, difficulty: s.difficulty, refusals: s.refusals, hitRockBottom: s.hitRockBottom, dms: s.dms, dmMood: s.dmMood, dmMoodTicks: s.dmMoodTicks, roomHinted: s.roomHinted }));
     } catch (e) {}
   }
 
@@ -2952,7 +3120,7 @@ class Component extends DCLogic {
       isResult: s.phase === 'result',
       isLose: s.phase === 'over' && s.overReason !== 'win' && s.overReason !== 'secret',
       isWin: s.phase === 'over' && s.overReason === 'win',
-      showMeters: s.phase !== 'intro' && s.phase !== 'name' && s.phase !== 'milestone' && s.phase !== 'recap' && s.phase !== 'shadowwait',
+      showMeters: s.phase !== 'intro' && s.phase !== 'name' && s.phase !== 'story' && s.phase !== 'milestone' && s.phase !== 'recap' && s.phase !== 'shadowwait',
       waitPct: Math.min(100, Math.round((s.waitSecs || 0) / (s.waitDuration || 6) * 100)),
       liveViewsFmt: this.fmtF(s.liveViews || 0),
       waitScenarioName: s.currentId && this.data[s.currentId] ? this.data[s.currentId].kicker : 'Innehåll',
@@ -2964,8 +3132,8 @@ class Component extends DCLogic {
       ...this.roomInfo(this.statusIdx(s.followers)),
       neonName: (s.name || 'Liza').toUpperCase(),
       roomThought: s.roomThought || '',
-      onWindow: () => this.peek('window'), onMirror: () => this.peek('mirror'), onPhone: () => this.peek('phone'), onWardrobe: () => this.peek('wardrobe'),
-      onLamp: () => this.peek('lamp'), onPlant: () => this.peek('plant'), onNeon: () => this.peek('neon'), onAward: () => this.peek('award'),
+      onWindow: () => this.peek('window'), onMirror: () => { this.playSound('click'); this.onOpenLifestyle(); }, onPhone: () => { this.playSound('click'); this.onOpenInbox(); }, onWardrobe: () => this.peek('wardrobe'),
+      onLamp: () => this.peek('lamp'), onPlant: () => this.peek('plant'), onNeon: () => this.peek('neon'), onAward: () => { this.playSound('click'); this.onOpenTrophies(); },
       showRoomHint: !s.roomHinted,
       handle: s.handle,
       statusLabel: this.statusOf(s.followers),
@@ -2992,8 +3160,11 @@ class Component extends DCLogic {
       resSub: s.lastResult ? sub(s.lastResult.sub) : '',
       deltas: s.lastDeltas || [],
       comments: s.comments || [],
+      isStory: s.phase === 'story',
+      storyText: s.storyText || '',
+      onBeginStory: this.onBeginStory,
       isMilestone: s.phase === 'milestone',
-      msStatus: s.msStatus, msName: s.name, msHandle: s.handle, msFollowers: this.fmtF(s.followers),
+      msStatus: s.msStatus, msStory: s.msStory || '', msName: s.name, msHandle: s.handle, msFollowers: this.fmtF(s.followers),
       onContinue: this.onContinue,
       isRecap: s.phase === 'recap',
       week: s.week,
@@ -3164,6 +3335,8 @@ class Component extends DCLogic {
       nameRef: this.nameRef,
       nameDefault: s.name || '',
       onRestart: this.onRestart,
+      onShare: this.onShare,
+      shareFeedback: s.shareFeedback || '',
       onQuit: this.onQuit,
       overTitle: om.title, overSub: om.sub, overDesc: om.desc,
       overStats: 'Följare ' + this.fmtF(s.followers) + ' · Publicitet ' + s.publicity + '% · ' + this.fmtMoney(s.money) + ' · ' + 'Vecka ' + s.week
